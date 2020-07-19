@@ -6,11 +6,13 @@ import { MainLayoutComponent } from './layout/main-layout/main-layout.component'
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatButtonModule} from '@angular/material/button';
 import { HeaderComponent } from './layout/header/header.component';
+import { AsideLeftComponent } from './layout/aside-left/aside-left.component';
 
 @NgModule({
   declarations: [
     MainLayoutComponent,
-    HeaderComponent
+    HeaderComponent,
+    AsideLeftComponent
   ],
   imports: [
     BrowserModule,

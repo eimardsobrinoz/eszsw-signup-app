@@ -1,0 +1,60 @@
+@import 'util/variables.scss';
+.asideLeft {
+    text-align: center;
+}
+.asideLeft__content{
+    border-bottom: 2px solid black;
+    padding-bottom: 20px;
+}
+.asideLeft__content__title {
+    font-size: 2rem;
+    font-weight: bold;
+    line-height: 1;
+}
+.asideLeft__content__subTitle {
+    font-size: 1.5rem;
+}
+.asideLeft__content__img {
+    width: 200px;
+    height: 200px;
+    border-radius: 100%;
+    display: block;
+    margin:auto;
+}
+.asideLeft__content__text {
+    font-size: 1.2rem;
+    line-height: 1;
+    color: $esz-gray;
+}
+.asideLeft__content__link{
+    font-size: 1rem;
+    display: block;
+    border-bottom: 1px solid $esz-blue;
+    padding-bottom: 2px;
+    color: $esz-blue;
+    text-decoration: none;
+    width: 65px;
+    margin: 0 auto;
+    margin-bottom: 10px;
+}
+
+// Tablet resolution
+@media(min-width:$esz-min-tablet-resolution) {
+    .asideLeft {
+      
+    }
+}
+
+// Desktop resolution
+@media(min-width:$esz-min-desktop-resolution) {
+    .asideLeft {
+      
+    }
+}
+
+// Resolution large desktop
+@media(min-width: $esz-min-lg-desktop-resolution) {
+    .asideLeft {
+      
+    }
+}

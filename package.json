@@ -29,7 +29,7 @@
     "lodash": "^4.17.19",
     "rxjs": "~6.5.4",
     "tslib": "^1.10.0",
-    "zone.js": "~0.10.2" 
+    "zone.js": "~0.10.2"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.900.7",
@@ -54,6 +54,7 @@
     "tslint": "~5.18.0",
     "tslint-config-prettier": "^1.18.0",
     "typescript": "~3.7.5",
+    "webpack": "^4.43.0",
     "webpack-bundle-analyzer": "^3.8.0"
   }
 }

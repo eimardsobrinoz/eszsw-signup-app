@@ -1,0 +1,80 @@
+@import 'util/variables.scss';
+.mainWrapper {
+    display: block;
+    border: 2px solid red;
+}
+.contentAsideLeft, .contentMain, .contentMain__main, .contentAsideLeft_asideLeft{
+    width: auto;
+    height: 100%;
+    display: block;
+}
+.contentAsideLeft {
+    background: green;
+    vertical-align: top;
+}
+.contentAsideLeft_asideLeft{
+    padding: 20px;
+}
+.contentMain {
+    background: yellow;
+}
+.contentMain__main {
+    padding: 20px;
+}
+
+// Tablet resolution
+@media(min-width:$esz-min-tablet-resolution) {
+    .mainWrapper {
+        .contentAsideLeft {
+            width: 40%;
+        }
+        .contentMain {
+            width:60%;
+        }
+        .contentMain__main {
+            margin:0 auto;
+            width:75%;
+        }
+        .contentAsideLeft, .contentMain {
+            display: inline-block;
+        }
+    }
+}
+// Desktop resolution
+@media(min-width:$esz-min-desktop-resolution) {
+    .mainWrapper {
+        .contentAsideLeft {
+            width: 30%;
+        }
+        .contentMain {
+            width:70%;
+        }
+        .contentMain__main {
+            margin:0 auto;
+            width:60%;
+        }
+    }
+}
+
+// Resolution large resolution
+@media(min-width: $esz-min-lg-desktop-resolution) {
+    .mainWrapper {
+        max-width: 1400px;
+        margin:0 auto;
+        .contentAsideLeft {
+            width: 30%;
+        }
+        .contentMain {
+            width: 70%;
+        }
+    }
+}
+
+@media(max-width: $esz-max-iphoneSE-resolution){
+    .mainWrapper {
+        .contentMain__main, .contentAsideLeft_asideLeft {
+            padding-left: 15px;
+            padding-right: 15px;
+        }
+    }
+}
