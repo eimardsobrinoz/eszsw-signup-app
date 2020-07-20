@@ -41,7 +41,16 @@
 // Tablet resolution
 @media(min-width:$esz-min-tablet-resolution) {
     .asideLeft {
-      
+        .asideLeft__content{
+            border-bottom: none;
+        }
+        .asideLeft__content__text, .asideLeft__content__link {
+            color: $esz-white;
+        }
+        .asideLeft__content__link{
+            border-bottom: 1px solid $esz-black;
+            color: $esz-black;
+        }
     }
 }
 

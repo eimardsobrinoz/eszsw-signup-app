@@ -1,0 +1,73 @@
+@import 'util/variables.scss';
+
+h1.formTitle {
+    font-size: 4rem;
+    font-weight: bold;
+    line-height: initial;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+.form__input {
+    box-sizing: border-box;
+    padding: 10px;
+    border-radius:4px;
+    border:none;
+    font-size: 1rem;
+    background: $esz-gray-light;
+    color:$esz-black;
+    width: 100%;
+    margin-bottom:20px;
+    &::placeholder {
+        color: $esz-gray;
+        font-style: italic;
+    }
+    &:active, &:hover, &:focus {
+        background: $esz-white;
+        border:1px solid $esz-gray-light;
+        padding: 9px 10px 9px 10px;
+    }
+    &:focus::placeholder {
+        color: transparent;
+    }
+}
+
+.form__btn {
+    width:200px;
+    padding:10px;
+    text-align: center;
+    font-size: 1rem;
+    border-radius: 4px;
+    border: 1px solid $esz-black;
+    font-weight: bold;
+    background: $esz-black;
+    color:$esz-white;
+    &.active, &:hover, &:focus {
+        background: $esz-black-light;
+    }
+}
+.formLayout {
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+
+// Tablet resolution
+@media(min-width:$esz-min-tablet-resolution) {
+    .formLayout {
+        width: 80%;
+    }
+}
+// Desktop resolution
+@media(min-width:$esz-min-desktop-resolution) {
+    .formLayout {
+        width: 70%;
+    }
+}
+
+// Resolution large resolution
+@media(min-width: $esz-min-lg-desktop-resolution) {
+    .formLayout {
+        max-width: 450px;
+    }
+}

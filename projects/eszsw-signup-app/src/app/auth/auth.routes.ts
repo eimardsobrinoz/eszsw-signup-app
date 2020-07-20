@@ -6,15 +6,18 @@ import { AuthComponent } from './auth.component';
 const authRoutes: Routes = [
     {
       path: '',
-      component: LoginComponent
+      component: LoginComponent,
+      data: { componentTag: 'Login'} 
     },
     {
       path: 'login',
-      component: LoginComponent
+      component: LoginComponent,
+      data: { componentTag: 'Login'} 
     },
     {
       path: 'signup',
-      component: SignupComponent
+      component: SignupComponent,
+      data: { componentTag: 'Signup'} 
     }
   ];
 

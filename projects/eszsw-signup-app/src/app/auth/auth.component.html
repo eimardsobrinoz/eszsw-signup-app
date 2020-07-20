@@ -1,5 +1,8 @@
-auth works!
-<button class="btn" mat-flat-button color="primary" routerLinkActive="active" routerLink="login">Login</button>
-<button class="btn" mat-flat-button color="primary" routerLinkActive="active" routerLink="signup">Sign Up</button>    -->
+<p *ngIf="inLogin" class="infoText">Not a Member? 
+    <a class="infoText__link" routerLinkActive="active" routerLink="signup" href="#">Sign up now</a>
+</p>
+<p *ngIf="inSignUp" class="infoText">Yo've already an account? 
+    <a class="infoText__link" routerLinkActive="active" routerLink="login" href="#">Sign in</a> 
+</p>
 
-<router-outlet></router-outlet> 
+<router-outlet  (activate)="onActivate()"></router-outlet> 
