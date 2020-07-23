@@ -22,4 +22,4 @@ const authRoutes: Routes = [
   ];
 
 
-export const AUTH_ROUTES = RouterModule.forChild( authRoutes);
+export const AUTH_ROUTES = RouterModule.forChild(authRoutes);

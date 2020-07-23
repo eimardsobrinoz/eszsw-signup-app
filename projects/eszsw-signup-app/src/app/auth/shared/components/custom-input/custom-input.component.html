@@ -1,0 +1,18 @@
+<div class="formInputGroup">
+
+    <label class="formInputGroup__label" for="userInput">{{label}} 
+        <span *ngIf="isRequired">*</span>
+    </label>
+
+    <input #input
+    class="formInputGroup__input" 
+    [ngClass]="{'error' : showError}"
+    [type]="type"  
+    [disabled]="disabled"
+    [placeholder]="placeholder"
+    (input)="onChange($event.target.value)"
+    (blur)="onTouched()">
+
+    <p class="formInputGroup__error" *ngIf="showError">{{errorMsg.emptyLbl}}</p>
+
+</div>

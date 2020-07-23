@@ -7,7 +7,7 @@ import { filter, map, first } from 'rxjs/operators';
 import { ComponentTag } from '../core/interfaces/component-tag.interface';
 
 @Component({
-  selector: 'esz-sw-auth',
+  selector: 'eszsw-auth',
   templateUrl: './auth.component.html',
   styleUrls: ['./auth.component.scss']
 })

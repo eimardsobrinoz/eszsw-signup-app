@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'esz-sw-aside-left',
+  selector: 'eszsw-aside-left',
   templateUrl: './aside-left.component.html',
   styleUrls: ['./aside-left.component.scss']
 })

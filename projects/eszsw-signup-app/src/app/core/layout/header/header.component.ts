@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'esz-sw-header',
+  selector: 'eszsw-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })

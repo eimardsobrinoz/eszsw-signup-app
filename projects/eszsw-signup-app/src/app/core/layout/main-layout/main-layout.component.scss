@@ -12,13 +12,13 @@
     vertical-align: top;
 }
 .contentAsideLeft_asideLeft{
-    padding: 100px 20px;
+    padding: 10px 20px;
 }
 .contentMain {
     // background: yellow;
 }
 .contentMain__main {
-    padding: 100px 20px;
+    padding: 10px 20px;
 }
 
 // Tablet resolution
@@ -33,7 +33,7 @@
         }
         .contentMain__main {
             margin:0 auto;
-            padding: 100px 30px;
+            padding: 10px 30px;
         }
         .contentAsideLeft, .contentMain {
             display: inline-block;

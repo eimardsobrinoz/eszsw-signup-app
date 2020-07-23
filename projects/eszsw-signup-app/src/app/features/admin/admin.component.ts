@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'esz-sw-admin',
+  selector: 'eszsw-admin',
   templateUrl: './admin.component.html',
   styleUrls: ['./admin.component.scss']
 })
