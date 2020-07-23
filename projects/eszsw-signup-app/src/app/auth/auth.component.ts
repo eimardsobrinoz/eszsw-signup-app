@@ -1,18 +1,28 @@
 import { AuthComponentsTag } from './../core/config/consts';
 import { SignupComponent } from './pages/signup/signup.component';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { RouterOutlet, ActivatedRoute, Router, NavigationEnd, ActivationEnd } from '@angular/router';
 import { LoginComponent } from './pages/login/login.component';
 import { filter, map, first } from 'rxjs/operators';
 import { ComponentTag } from '../core/interfaces/component-tag.interface';
+import { RoutePath } from '../core/enums/route.paths';
 
 @Component({
   selector: 'eszsw-auth',
   templateUrl: './auth.component.html',
-  styleUrls: ['./auth.component.scss']
+  styleUrls: ['./auth.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class AuthComponent implements OnInit {
   @ViewChild(RouterOutlet) ro: RouterOutlet;
+
+  textLoginLink: string;
+  loginLinkLbl: string;
+  loginLinkPath: string; 
+  textSignupLink: string; 
+  signupLinkLbl: string; 
+  signupLinkPath: string; 
+
   public context: string;
 
   constructor(private router: Router) {
@@ -24,7 +34,7 @@ export class AuthComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
+    this.initialize();
   }
 
   onActivate(): void {
@@ -36,6 +46,15 @@ export class AuthComponent implements OnInit {
     if (this.ro && this.ro.component) {
       this.context = (this.ro.component as LoginComponent | SignupComponent).getComponentTag;
     }
+  }
+
+  initialize() {
+    this.textLoginLink= 'Not a Member?';
+    this.loginLinkLbl= 'Sign up!';
+    this.loginLinkPath= RoutePath.SIGN_UP;
+    this.textSignupLink= "You've already an account?";
+    this.signupLinkLbl= 'Sign in!';
+    this.signupLinkPath= RoutePath.LOGIN;
   }
 
   get inLogin(): boolean {

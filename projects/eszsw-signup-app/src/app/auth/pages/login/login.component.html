@@ -1,3 +1,5 @@
 <h1 class="formTitle formLayout"> Login </h1>
-<eszsw-auth-form class="formLayout" [form]="loginForm"></eszsw-auth-form>
+<eszsw-auth-form class="formLayout" [form]="loginForm" (onSubmitForm)="login($event)"></eszsw-auth-form>
+<eszsw-text-link [text]="textLink" [linkLbl]="linkLbl" [linkPath]="linkPath"></eszsw-text-link>
+
 

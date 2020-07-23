@@ -1,0 +1,34 @@
+{
+    "inputsControls": [
+        {
+            "isRequired": true,
+            "label": "Username",
+            "errorMsg": {
+                "emptyLbl": "Enter usermane"
+            },
+            "name": "Username"
+        },
+        {
+            "isRequired": true,
+            "label": "Email",
+            "errorMsg": {
+                "emptyLbl": "Enter email",
+                "formatLbl": "Error in email format"
+            },
+            "name": "Email",
+            "type": "email",
+            "pattern": "[A-Za-z0-9._%-]+@[A-Za-z0-9._%-]+\\.[a-z]{2,3}"
+        },
+        {
+            "isRequired": true,
+            "label": "Password",
+            "errorMsg": {
+                "emptyLbl": "Enter password",
+                "formatLbl": "Error in password format"
+            },
+            "name": "Password",
+            "type": "password"
+        }
+    ],
+    "btnLabel": "Sign Up"
+}

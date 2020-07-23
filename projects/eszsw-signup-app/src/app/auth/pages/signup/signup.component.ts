@@ -1,7 +1,7 @@
+import { AuthService } from 'projects/eszsw-signup-app/src/app/core/services/auth-service/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { AuthComponentsTag } from '../../../core/config/consts';
 import { AuthForm } from '../../shared/interfaces/auth-form.interface';
-import { AuthService } from '../../../core/services/auth.service';
 
 @Component({
   selector: 'eszsw-signup',
@@ -14,7 +14,13 @@ export class SignupComponent implements OnInit {
   constructor(private authService: AuthService) { }
 
   ngOnInit(): void {
-    this.signUpForm = this.authService.getSignUpForm;
+    this.getFormData();
+  }
+
+  getFormData(): void {
+    this.authService.getSignUpForm().subscribe(
+      (signUpForm: AuthForm) => this.signUpForm = signUpForm
+    );
   }
 
   get getComponentTag(){

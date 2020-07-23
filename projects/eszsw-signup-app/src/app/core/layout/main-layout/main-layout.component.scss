@@ -8,11 +8,10 @@
     display: block;
 }
 .contentAsideLeft {
-    // background: green;
     vertical-align: top;
 }
 .contentAsideLeft_asideLeft{
-    padding: 10px 20px;
+    padding: 15px;
 }
 .contentMain {
     // background: yellow;
@@ -26,7 +25,6 @@
     .mainWrapper {
         .contentAsideLeft {
             width: 40%;
-            background: $esz-violete;
         }
         .contentMain {
             width:60%;
@@ -45,9 +43,13 @@
     .mainWrapper {
         .contentAsideLeft {
             width: 30%;
+            background: $esz-violete;
         }
         .contentMain {
             width:70%;
+        }
+        .contentAsideLeft_asideLeft {
+            padding: 0;
         }
     }
 }

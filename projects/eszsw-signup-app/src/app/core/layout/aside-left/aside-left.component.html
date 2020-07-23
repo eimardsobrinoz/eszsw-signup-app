@@ -1,12 +1,10 @@
-<aside class="asideLeft">
-    <div class="asideLeft__content">
-        <img class="asideLeft__content__img" [src]="imgPath" alt="eszSWLogo">
-        <h1 class="asideLeft__content__title"> Eimard</h1>
-        <h2 class="asideLeft__content__subTitle"> Frontend Engineer</h2>
-        <p class="asideLeft__content__text">
-            "I am really motivated to start a new challengue and looking forward to joining you and the team"
-        </p>
-        <a class="asideLeft__content__link" [href]="wedSitePath" target="__blank">Web site</a>
-        <a class="asideLeft__content__link" [href]="linkedinPath" target="__blank">Linkedin</a>
-    </div>
+<aside #asideElement class="asideLeft">
+    <img class="asideLeft__img" [src]="imgPath" alt="eszSWLogo">
+    <h1 class="asideLeft__title"> Eimard</h1>
+    <h2 class="asideLeft__subTitle"> Frontend Engineer</h2>
+    <p class="asideLeft__text">
+        "I am really motivated to start a new challengue and looking forward to joining you and the team"
+    </p>
+    <a class="asideLeft__link" [href]="wedSitePath" target="__blank" [title]="webSiteLinkTitle">Web site</a>
+    <a class="asideLeft__link" [href]="linkedinPath" target="__blank"  [title]="linkedinLinkTitle">Linkedin</a>
 </aside>

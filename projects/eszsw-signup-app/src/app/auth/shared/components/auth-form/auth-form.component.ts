@@ -1,6 +1,5 @@
 import { AuthForm } from './../../interfaces/auth-form.interface';
-import { AuthService } from './../../../../core/services/auth.service';
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import {NgForm } from '@angular/forms';
 
 @Component({
@@ -11,6 +10,8 @@ import {NgForm } from '@angular/forms';
 export class AuthFormComponent implements OnInit  {
  
   @Input() form: AuthForm;
+  @Output() onSubmitForm:EventEmitter<NgForm> = new EventEmitter<NgForm>();
+
   constructor() { }
 
   ngOnInit() {
@@ -21,6 +22,7 @@ export class AuthFormComponent implements OnInit  {
 
   onSubmit(f: NgForm) {
     console.log(f);
+    this.onSubmitForm.emit(f);
   }
 
 }

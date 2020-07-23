@@ -7,6 +7,7 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatButtonModule} from '@angular/material/button';
 import { HeaderComponent } from './layout/header/header.component';
 import { AsideLeftComponent } from './layout/aside-left/aside-left.component';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { AsideLeftComponent } from './layout/aside-left/aside-left.component';
     BrowserModule,
     BrowserAnimationsModule,
     RouterModule,
+    HttpClientModule,
     MatToolbarModule,
     MatButtonModule
   ],

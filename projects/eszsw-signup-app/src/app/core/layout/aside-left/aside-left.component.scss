@@ -1,37 +1,38 @@
 @import 'util/variables.scss';
 .asideLeft {
     text-align: center;
+    padding: 40px 5px 15px 5px;
+    background: $esz-violete;
+    height: 100%;
 }
-.asideLeft__content{
-    border-bottom: 2px solid black;
-    padding-bottom: 20px;
-}
-.asideLeft__content__title {
+.asideLeft__title {
     font-size: 2rem;
     font-weight: bold;
     line-height: 1;
 }
-.asideLeft__content__subTitle {
+.asideLeft__subTitle {
     font-size: 1.5rem;
 }
-.asideLeft__content__img {
+.asideLeft__img {
     width: 200px;
     height: 200px;
     border-radius: 100%;
     display: block;
     margin:auto;
 }
-.asideLeft__content__text {
+.asideLeft__text {
     font-size: 1.2rem;
     line-height: 1;
-    color: $esz-gray;
+    color: $esz-white;
+    margin-bottom: 30px;
 }
-.asideLeft__content__link{
+
+.asideLeft__link{
     font-size: 1rem;
     display: block;
-    border-bottom: 1px solid $esz-blue;
+    border-bottom: 1px solid $esz-black;
     padding-bottom: 2px;
-    color: $esz-blue;
+    color: $esz-black;
     text-decoration: none;
     width: 65px;
     margin: 0 auto;
@@ -41,13 +42,20 @@
 // Tablet resolution
 @media(min-width:$esz-min-tablet-resolution) {
     .asideLeft {
-        .asideLeft__content{
-            border-bottom: none;
+        padding: 30px 15px 30px 15px;
+        .asideLeft{
+            border-bottom: none; 
+        } 
+        .asideLeft__img {
+            margin-bottom: 10px;
         }
-        .asideLeft__content__text, .asideLeft__content__link {
-            color: $esz-white;
+        .asideLeft__subTitle {
+            margin-bottom: 30px;;
         }
-        .asideLeft__content__link{
+        .asideLeft__text {
+            margin-bottom: 50px;
+        }
+        .asideLeft__link{
             border-bottom: 1px solid $esz-black;
             color: $esz-black;
         }
@@ -57,7 +65,7 @@
 // Desktop resolution
 @media(min-width:$esz-min-desktop-resolution) {
     .asideLeft {
-      
+        padding: 50px 15px 30px 15px;
     }
 }
 

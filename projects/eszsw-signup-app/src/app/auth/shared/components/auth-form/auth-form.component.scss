@@ -22,6 +22,7 @@
     color:$esz-white;
     &.active, &:hover, &:focus {
         background: $esz-black-light;
+        outline: none;
     }
     &.disabled {
         background: $esz-gray;

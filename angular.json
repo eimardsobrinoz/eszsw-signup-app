@@ -12,7 +12,7 @@
       },
       "root": "projects/eszsw-signup-app",
       "sourceRoot": "projects/eszsw-signup-app/src",
-      "prefix": "esz-sw",
+      "prefix": "eszsw",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",

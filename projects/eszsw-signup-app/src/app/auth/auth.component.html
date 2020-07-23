@@ -1,7 +1,16 @@
-<p *ngIf="inLogin" class="infoText">Not a Member? 
-    <a class="infoText__link" routerLinkActive="active" routerLink="signup" href="#">Sign up now</a>
-</p>
-<p *ngIf="inSignUp" class="infoText">Yo've already an account? 
-    <a class="infoText__link" routerLinkActive="active" routerLink="login" href="#">Sign in</a> 
-</p>
-<router-outlet  (activate)="onActivate()"></router-outlet> 
+
+<eszsw-text-link *ngIf="inLogin" 
+[text]="textLoginLink" 
+[linkLbl]="loginLinkLbl" 
+[linkPath]="loginLinkPath"
+styleClass="alignRight"></eszsw-text-link>
+
+<eszsw-text-link *ngIf="inSignUp" 
+[text]="textSignupLink" 
+[linkLbl]="signupLinkLbl" 
+[linkPath]="signupLinkPath"
+styleClass="alignRight"></eszsw-text-link>
+
+<div class="wrapperContent">
+    <router-outlet  (activate)="onActivate()"></router-outlet> 
+</div>

@@ -1,0 +1,113 @@
+{
+    "loginForm": {
+        "inputsControls": [
+            {
+                "isRequired": true,
+                "label": "Email",
+                "errorMsg": {
+                    "emptyLbl": "Enter email",
+                    "formatLbl": "Error in email format"
+                },
+                "name": "Email",
+                "type": "mail",
+                "pattern": "[A-Za-z0-9._%-]+@[A-Za-z0-9._%-]+\\.[a-z]{2,3}"
+            },
+            {
+                "isRequired": true,
+                "label": "Password",
+                "errorMsg": {
+                    "emptyLbl": "Enter password",
+                    "formatLbl": "Error in password format"
+                },
+                "name": "Password",
+                "type": "password"
+            }
+        ],
+        "btnLabel": "Sign In"
+    },
+    "signupForm": {
+        "inputsControls": [
+            {
+                "isRequired": true,
+                "label": "Username",
+                "errorMsg": {
+                    "emptyLbl": "Enter usermane"
+                },
+                "name": "Username"
+            },
+            {
+                "isRequired": true,
+                "label": "Email",
+                "errorMsg": {
+                    "emptyLbl": "Enter email",
+                    "formatLbl": "Error in email format"
+                },
+                "name": "Email",
+                "type": "email",
+                "pattern": "[A-Za-z0-9._%-]+@[A-Za-z0-9._%-]+\\.[a-z]{2,3}"
+            },
+            {
+                "isRequired": true,
+                "label": "Password",
+                "errorMsg": {
+                    "emptyLbl": "Enter password",
+                    "formatLbl": "Error in password format"
+                },
+                "name": "Password",
+                "type": "password"
+            }
+        ],
+        "btnLabel": "Sign Up"
+    },
+    "mailConfirmationForm": {
+        "inputsControls": [
+            {
+                "isRequired": true,
+                "label": "Verification email",
+                "errorMsg": {
+                    "emptyLbl": "Enter verification email",
+                    "formatLbl": "Error in email format"
+                },
+                "name": "verifycationEmail",
+                "type": "mail",
+                "pattern": "[A-Za-z0-9._%-]+@[A-Za-z0-9._%-]+\\.[a-z]{2,3}"
+            }
+        ],
+        "btnLabel": "Send verification email"
+    },
+    "resetPasswordForm": {
+        "inputsControls": [
+            {
+                "isRequired": true,
+                "label": "Current Password",
+                "errorMsg": {
+                    "emptyLbl": "Enter current password",
+                    "formatLbl": "Error in password format"
+                },
+                "name": "currentPassword",
+                "type": "password"
+            },
+            {
+                "isRequired": true,
+                "label": "New Password",
+                "errorMsg": {
+                    "emptyLbl": "Enter new password",
+                    "formatLbl": "Error in password format"
+                },
+                "name": "newPassword1",
+                "type": "password"
+            },
+            {
+                "isRequired": true,
+                "label": "Repeat new password",
+                "errorMsg": {
+                    "emptyLbl": "Enter password confirmation",
+                    "formatLbl": "Error in password format"
+                },
+                "name": "newPassword2",
+                "type": "password"
+            }
+        ],
+        "btnLabel": "Change Password"
+    }
+}
