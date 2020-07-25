@@ -12,14 +12,13 @@ export class AsideLeftComponent implements OnInit, AfterViewInit {
   linkedinPath: string;
   webSiteLinkTitle:string;
   linkedinLinkTitle:string;
-  @ViewChild('asideElement', { static: true}) asideElement: ElementRef;
+  @ViewChild('asideElement') asideElement: ElementRef;
 
   constructor(private renderer2: Renderer2) { }
 
   @HostListener('window:resize', ['$event'])
   onResize() {
     this.fillFullHeight();
-    console.log('Emiliooo: ', window.innerHeight);
   }
 
   ngOnInit(): void {

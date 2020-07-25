@@ -1,4 +1,4 @@
-import { AuthComponentsTag } from './../core/config/consts';
+import { AuthComponentsTag } from '../core/enums/component-tags';
 import { SignupComponent } from './pages/signup/signup.component';
 import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { RouterOutlet, ActivatedRoute, Router, NavigationEnd, ActivationEnd } from '@angular/router';

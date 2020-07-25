@@ -22,7 +22,7 @@ import { TextLinkComponent } from './shared/components/text-link/text-link.compo
     AuthFormComponent,
     ResetPasswordComponent,
     MailConfirmComponent,
-    TextLinkComponent
+    TextLinkComponent  
   ],
   imports: [
     SharedModule,

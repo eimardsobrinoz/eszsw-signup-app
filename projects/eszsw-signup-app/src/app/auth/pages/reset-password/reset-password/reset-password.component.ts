@@ -1,8 +1,9 @@
+import { Observable } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'projects/eszsw-signup-app/src/app/core/services/auth-service/auth.service';
 import { AuthForm } from '../../../shared/interfaces/auth-form.interface';
 import { RoutePath } from 'projects/eszsw-signup-app/src/app/core/enums/route.paths';
-import { AuthComponentsTag } from 'projects/eszsw-signup-app/src/app/core/config/consts';
+import { AuthComponentsTag } from 'projects/eszsw-signup-app/src/app/core/enums/component-tags';
 
 @Component({
   selector: 'eszsw-reset-password',
@@ -11,7 +12,7 @@ import { AuthComponentsTag } from 'projects/eszsw-signup-app/src/app/core/config
 })
 export class ResetPasswordComponent implements OnInit {
 
-  resetPasswordForm: AuthForm;
+  resetPasswordForm: AuthForm | Observable<AuthForm>;
   textLink:string;
   linkLbl:string;
   linkPath:string;
@@ -24,15 +25,13 @@ export class ResetPasswordComponent implements OnInit {
 
   initialize() {
     this.getFormData();
-    this.textLink= 'You remembered your password?';
+    this.textLink= 'Remembered your password?';
     this.linkLbl= 'Sign In!';
     this.linkPath= RoutePath.LOGIN;
   }
 
   getFormData(): void {
-    this.authService.getResetPasswordForm().subscribe(
-      (resetPasswordForm: AuthForm) => this.resetPasswordForm = resetPasswordForm
-    );
+    this.resetPasswordForm = this.authService.getResetPasswordForm();
   }
 
   get getComponentTag() {

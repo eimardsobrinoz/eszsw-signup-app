@@ -5,8 +5,12 @@
     margin-bottom:5px;
     display: block;
 }
+.formInputGroup__wrapperInput {
+    position: relative;
+    margin-bottom:20px;
+}
 
-.formInputGroup__input {
+.formInputGroup__wrapperInput__input {
     box-sizing: border-box;
     padding: 10px;
     border-radius:4px;
@@ -16,7 +20,6 @@
     color:$esz-black;
     width: 100%;
     outline:none;
-    margin-bottom:20px;
     &::placeholder {
         color: $esz-gray;
         font-style: italic;
@@ -32,12 +35,41 @@
     }
     &.error {
         background: $esz-red-light;
-        margin-bottom:0px;
+    }
+    &.validating {
+        background: $esz-gray;
+    }
+    &.email {
+        padding-right: 100px;
     }
 }
 
-.formInputGroup__error {
-    color: $esz-red;
-    margin-bottom:20px;
+.formInputGroup__wrapperInput__text {
+    margin:5px 0 5px 0;
     font-size: 0.8rem;
+    color: $esz-black;
+    &.valid {
+        color: $esz-green;
+    }
+    &.error {
+        color: $esz-red;
+    }
+    &.info {
+        color: $esz-gray;
+    }
+}
+
+.formInputGroup__wrapperInput__icon {
+    position: absolute;
+    top: 8px;
+    right: 12px;
+    &.valid {
+        color: $esz-green;
+    }
+    &.error {
+        color: $esz-red;
+    }
+    &.loading {
+        top: -19px;
+    }
 }

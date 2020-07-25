@@ -1,13 +1,13 @@
 import { environment } from 'projects/eszsw-signup-app/src/environments/environment';
 import { HttpService } from './../http-service/http.service';
-import { Injectable } from '@angular/core';
+import { Injectable, NgZone } from '@angular/core';
 import { StorageService } from '../storage-service/storage.service';
 import { Router } from '@angular/router';
 import { ErrorService } from '../error-service/error.service';
 import { Observable } from 'rxjs';
 import { AuthEndPoints, ApiMethod } from '../../enums/endpoints';
 import { AuthForm } from '../../../auth/shared/interfaces/auth-form.interface';
-import { CustomInput } from '../../../auth/shared/models/custom-input';
+import { CustomInput } from '../../../auth/shared/models/custom-input-model';
 import { map } from 'rxjs/operators';
 
 @Injectable({
@@ -21,7 +21,9 @@ export class AuthService {
     private httpService: HttpService,
     private storage: StorageService,
     private router: Router,
-    private error: ErrorService
+    private error: ErrorService,
+    // public afAuth: AngularFireAuth, // Inject Firebase auth service
+    public ngZone: NgZone // NgZone service to remove outside scope warning
   ) { }
 
   // loginyout(loginPayload: LoginPayload): void {
@@ -67,5 +69,42 @@ export class AuthService {
     return this.httpService.requestCall(AuthEndPoints.EMAIL_REGISTERED, ApiMethod.GET, environment.apiAuthUrl, email)
           .pipe(map( res => res.status));
   }
+
+
+  // verification email
+
+// SendVerificationMail() {
+//   return this.afAuth.auth.currentUser.sendEmailVerification()
+//   .then(() => {
+//     this.router.navigate(['<!-- enter your route name here -->']);
+//   })
+// }
+
+
+//   SignUp(email, password) {
+//     return this.afAuth.auth.createUserWithEmailAndPassword(email, password)
+//       .then((result) => {
+//         this.SendVerificationMail(); // Sending email verification notification, when new user registers
+//       }).catch((error) => {
+//         window.alert(error.message)
+//       })
+//   }
+
+//   SignIn(email, password) {
+//     return this.afAuth.auth.signInWithEmailAndPassword(email, password)
+//       .then((result) => {
+//         if (result.user.emailVerified !== true) {
+//           this.SendVerificationMail();
+//           window.alert('Please validate your email address. Kindly check your inbox.');
+//         } else {
+//           this.ngZone.run(() => {
+//             this.router.navigate(['<!-- enter your route name here -->']);
+//           });
+//         }
+//         this.SetUserData(result.user);
+//       }).catch((error) => {
+//         window.alert(error.message)
+//       })
+//   }
 
 }

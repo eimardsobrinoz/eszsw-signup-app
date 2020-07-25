@@ -1,8 +1,9 @@
+import { AuthFormStatus } from './../../interfaces/auth-validation.inteface';
 import { ErrorFormMessage } from './../../interfaces/error-form-message.interface';
-import { Component, OnInit, Input, ViewChild, ElementRef, Self, Optional, forwardRef } from '@angular/core';
+import { Component, OnInit, Input, Self, ViewChild, ElementRef, ChangeDetectorRef, ChangeDetectionStrategy } from '@angular/core';
 import {
   ControlValueAccessor, Validator, AbstractControl,
-  ValidatorFn, Validators, NgControl, AsyncValidatorFn
+  ValidatorFn, Validators, NgControl, AsyncValidatorFn 
 } from '@angular/forms';
 import { AuthValidation } from '../../interfaces/auth-validation.inteface';
 import { AuthService } from 'projects/eszsw-signup-app/src/app/core/services/auth-service/auth.service';
@@ -16,55 +17,58 @@ export class CustomInputComponent implements ControlValueAccessor, Validator, On
 
 
   @ViewChild('input') input: ElementRef;
+
   @Input() type: string = 'text';
   @Input() controlValidation: AuthValidation;
   @Input() pattern: string = '';
   @Input() label: string = '';
   @Input() placeholder: string = '';
   @Input() errorMsg: ErrorFormMessage;
-  public disabled: boolean;
+  public isDisabled: boolean;
   public control: AbstractControl | null;
 
-  constructor(@Self() public controlAux: NgControl, private authService: AuthService) {
-    controlAux.valueAccessor = this;
-    this.control = controlAux.control;
+
+  constructor(@Self() private controlDirective: NgControl, private authService: AuthService) {
+    controlDirective.valueAccessor = this;
   }
 
-  ngOnInit() {
-    this.setValidation();
+  ngOnInit(): void {
+    setTimeout(() => this.setValidation(), 0);
   }
-  
+
   setValidation() {
-    const control = this.controlAux.control;
-    let syncValidators: ValidatorFn[] = [];
-    let asyncValidators: AsyncValidatorFn[] = [];
-    if (control) {
-      if (control.validator) {  
-        syncValidators = [control.validator];
+    if (this.controlDirective && this.controlDirective.control) {
+      this.control = this.controlDirective.control;
+
+      let syncValidators: ValidatorFn[] = [];
+      let asyncValidators: AsyncValidatorFn[] = [];
+      if (this.control.validator) {
+        syncValidators = [this.control.validator];
       }
-      if (control.asyncValidator) {  
-        asyncValidators = [control.asyncValidator];;
+      if (this.control.asyncValidator) {
+        asyncValidators = [this.control.asyncValidator];;
       }
-      
+
       this.setSyncronousValidation(syncValidators);
       this.setASyncronousValidation(asyncValidators);
 
-      control.setValidators(syncValidators);
-      control.setAsyncValidators(asyncValidators);
-      control.updateValueAndValidity();
-      console.log('Validators insideee emilio: ', control);
-    }
-    // console.log('Validators outside emilio: ', control);
 
+      this.control.setValidators(syncValidators);
+      this.control.setAsyncValidators(asyncValidators);
+      this.control.updateValueAndValidity();
+    }
   }
 
   onChange(event: Event) { }
 
   onTouched() { }
 
-  writeValue(obj: any): void {
-    this.input.nativeElement.value = obj;
+  writeValue(el: any): void {
+    if (this.input) {
+      this.input.nativeElement.value = el; 
+    }
   }
+
   registerOnChange(fn: any): void {
     this.onChange = fn;
   }
@@ -72,18 +76,12 @@ export class CustomInputComponent implements ControlValueAccessor, Validator, On
     this.onTouched = fn;
   }
   setDisabledState?(isDisabled: boolean): void {
-    this.disabled = isDisabled;
+    this.isDisabled = isDisabled;
   }
 
   validate(c: AbstractControl): { [key: string]: any; } {
     const validators: ValidatorFn[] = [];
-    if (this.controlValidation.required) {
-      validators.push(Validators.required);
-    }
-    if (this.controlValidation.pattern) {
-      validators.push(Validators.pattern(this.controlValidation.pattern));
-    }
-
+    this.setValidation();
     return validators;
   }
 
@@ -94,7 +92,9 @@ export class CustomInputComponent implements ControlValueAccessor, Validator, On
     if (this.controlValidation.pattern) {
       syncValidators.push(Validators.pattern(this.controlValidation.pattern));
     }
-    
+    if (this.controlValidation.email) {
+      syncValidators.push(Validators.email);
+    }
     if (this.controlValidation.minLength) {
       syncValidators.push(Validators.minLength(this.controlValidation.minLength));
     }
@@ -107,7 +107,7 @@ export class CustomInputComponent implements ControlValueAccessor, Validator, On
       asyncValidators.push(this.availableMail.bind(this));
     }
   }
- 
+
 
   lowercaseValidator(c: AbstractControl): { [k: string]: boolean } | null {
     let regexLowercase = /[a-z]/g;
@@ -120,17 +120,18 @@ export class CustomInputComponent implements ControlValueAccessor, Validator, On
   }
 
   // Asyncronous Validation example
-  availableMail(control: AbstractControl): Promise<{[k: string]: boolean} | null> {
-    return new Promise<{[k: string]: boolean} | null>( (resolve, reject) => {
+  availableMail(control: AbstractControl): Promise<{ [k: string]: boolean } | null> {
+    return new Promise<{ [k: string]: boolean } | null>((resolve, reject) => {
       // Emulating checking in the data Base if it is available
-      setTimeout(()=> {
+      setTimeout(() => {
         this.authService.isValidEmail(control.value).subscribe(
           status => {
-            if (status) {
+            // test unhappy scenario typing 'email@error.co') or changing the flat status to false in mocks
+            if (status && control.value !== 'email@error.co') {
               resolve(null);
             } else {
-              resolve({mailNotAvailable: true })
-           }
+              resolve({ mailNotAvailable: true })
+            }
           },
           error => reject()
         );
@@ -140,11 +141,18 @@ export class CustomInputComponent implements ControlValueAccessor, Validator, On
 
   get isThereError(): boolean {
     let showError: boolean = false;
-    if (this.controlAux.control?.touched && this.controlAux.control?.errors) {
-        showError = true; 
-    }       
+    if (this.control?.touched && this.control?.invalid) {
+      showError = true;
+    }
     return showError;
   }
 
+  get statusPending(): boolean {
+    let pending: boolean = false;
+    if (!this.control?.errors?.required && this.control?.dirty && this.control?.status == AuthFormStatus.PENDING) {
+      pending = true;
+    }
+    return pending;
+  }
 
 }

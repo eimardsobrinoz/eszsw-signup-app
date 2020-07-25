@@ -1,7 +1,8 @@
+import { Observable } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
 import { AuthForm } from '../../../shared/interfaces/auth-form.interface';
 import { AuthService } from 'projects/eszsw-signup-app/src/app/core/services/auth-service/auth.service';
-import { AuthComponentsTag } from 'projects/eszsw-signup-app/src/app/core/config/consts';
+import { AuthComponentsTag } from 'projects/eszsw-signup-app/src/app/core/enums/component-tags';
 
 @Component({
   selector: 'eszsw-mail-confirm',
@@ -10,7 +11,7 @@ import { AuthComponentsTag } from 'projects/eszsw-signup-app/src/app/core/config
 })
 export class MailConfirmComponent implements OnInit {
 
-  mailConfirm: AuthForm;
+  mailConfirmForm: AuthForm | Observable<AuthForm>;
   mailConfirmtxt: string;
   textLink: string;
   linkLbl: string;
@@ -30,9 +31,7 @@ export class MailConfirmComponent implements OnInit {
     this.linkPath = '';
   }
   getFormData(): void {
-    this.authService.getMailConfirmForm().subscribe(
-      (mailConfirm: AuthForm) => this.mailConfirm = mailConfirm
-    );
+    this.mailConfirmForm = this.authService.getMailConfirmForm();
   }
 
   get getComponentTag() {

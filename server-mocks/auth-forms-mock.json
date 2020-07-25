@@ -5,12 +5,13 @@
                 "label": "Email",
                 "errorMsg": {
                     "required": "Email field is required",
-                    "format": "Email format not correct"
+                    "format": "Please provide a valid email address"
                 },
-                "name": "Email",
+                "name": "email",
                 "type": "email",
                 "validations": {
                     "required": true,
+                    "email": true,
                     "pattern": "[A-Za-z0-9._%-]+@[A-Za-z0-9._%-]+\\.[a-z]{2,3}"
                 }
             },
@@ -20,7 +21,7 @@
                     "required": "Passwors field is required",
                     "lowerUppercaseFormat": "Password should contain lower and uppercase letters"
                 },
-                "name": "Password",
+                "name": "password",
                 "type": "password",
                 "validations": {
                     "required": true,
@@ -57,15 +58,16 @@
                 "label": "Email",
                 "errorMsg": {
                     "required": "Email field is required",
-                    "format": "Email format not correct",
-                    "mailNotAvailable": "Email not available"
+                    "format": "Please provide a valid email address",
+                    "mailNotAvailable": "Email slready registered"
                 },
-                "name": "Email",
+                "name": "email",
                 "type": "email",
                 "validations": {
                     "required": true,
                     "pattern": "[A-Za-z0-9._%-]+@[A-Za-z0-9._%-]+\\.[a-z]{2,3}",
-                    "available": true
+                    "available": true,
+                    "email": true
                 }
             },
             {
@@ -74,7 +76,7 @@
                     "required": "Passwors field is required",
                     "lowerUppercaseFormat": "Password should contain lower and uppercase letters"
                 },
-                "name": "Password",
+                "name": "password",
                 "type": "password",
                 "validations": {
                     "required": true,
@@ -91,13 +93,14 @@
                 "label": "Verification email",
                 "errorMsg": {
                     "required": "Enter verification email",
-                    "format": "Email format not correct"
+                    "format": "Please provide a valid email address"
                 },
                 "name": "verifycationEmail",
                 "type": "email",
                 "validations": {
                     "required": true,
-                    "pattern": "[A-Za-z0-9._%-]+@[A-Za-z0-9._%-]+\\.[a-z]{2,3}"
+                    "pattern": "[A-Za-z0-9._%-]+@[A-Za-z0-9._%-]+\\.[a-z]{2,3}",
+                    "email": true
                 }
             }
         ],
@@ -151,6 +154,6 @@
         "btnLabel": "Change Password"
     },
     "isValidEmail":{
-        "status": false
+        "status": true
     }
 }

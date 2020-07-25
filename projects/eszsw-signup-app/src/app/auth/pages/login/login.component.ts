@@ -2,9 +2,10 @@ import { RoutePath } from '../../../core/enums/route.paths';
 import { AuthService } from 'projects/eszsw-signup-app/src/app/core/services/auth-service/auth.service';
 import { AuthForm } from './../../shared/interfaces/auth-form.interface';
 import { Component, OnInit } from '@angular/core';
-import { AuthComponentsTag } from '../../../core/config/consts';
+import { AuthComponentsTag } from '../../../core/enums/component-tags';
 import { NgForm } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'eszsw-login',
@@ -13,7 +14,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
 
-  loginForm: AuthForm;
+  loginForm: AuthForm | Observable<AuthForm>;
   textLink: string;
   linkLbl: string;
   linkPath: string;
@@ -33,14 +34,7 @@ export class LoginComponent implements OnInit {
   }
 
   getFormData(): void {
-    setTimeout(()=> {
-      this.authService.getLoginForm().subscribe(
-        (loginForm: AuthForm) => this.loginForm = loginForm
-      );    
-    }, 2000);
-    // this.authService.getLoginForm().subscribe(
-    //   (loginForm: AuthForm) => this.loginForm = loginForm
-    // );
+    this.loginForm =  this.authService.getLoginForm();
   }
 
   get getComponentTag() {
@@ -49,8 +43,6 @@ export class LoginComponent implements OnInit {
 
 
   login(form: NgForm) {
-    console.log('Trying to log in', form);
-
     this.router.navigate([RoutePath.MAIL_CONFIRMATION], { relativeTo: this.route });
   }
 
