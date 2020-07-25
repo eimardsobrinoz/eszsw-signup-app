@@ -1,3 +1,4 @@
+import { RoutePath } from 'projects/eszsw-signup-app/src/app/core/enums/route.paths';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthComponent } from './auth/auth.component';
 
@@ -8,14 +9,14 @@ const routes: Routes = [
       redirectTo: 'auth' 
     },
     {
-      path: 'home',
+      path: RoutePath.HOME,
       loadChildren: () => import('./features/home/home.module').then(m => m.HomeModule) 
     },
     { 
-      path: 'admin',
+      path: RoutePath.ADMIN,
       loadChildren: () => import('./features/admin/admin.module').then(m => m.AdminModule)},
     { 
-      path: 'auth', 
+      path: RoutePath.AUTH, 
       component: AuthComponent,
       loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule) 
     },

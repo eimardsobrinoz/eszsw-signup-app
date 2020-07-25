@@ -16,4 +16,5 @@ export enum AuthEndPoints {
     SIGN_UP_FORM = "/signupForm",
     RESET_PASSWORD_FORM = "/resetPasswordForm",
     MAIL_CONFIRMATION_FORM= "/mailConfirmationForm",
+    EMAIL_REGISTERED= "/isValidEmail",
 }

@@ -1,4 +1,7 @@
 export interface ErrorFormMessage {
-    emptyLbl: string;
-    formatLbl?: string;
-  }
+  required: string;
+  format?: string;
+  minLength?: string;
+  lowerUppercaseFormat?: string;
+  mailNotAvailable?: string;
+}

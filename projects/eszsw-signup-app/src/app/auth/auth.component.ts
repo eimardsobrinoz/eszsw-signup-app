@@ -6,6 +6,8 @@ import { LoginComponent } from './pages/login/login.component';
 import { filter, map, first } from 'rxjs/operators';
 import { ComponentTag } from '../core/interfaces/component-tag.interface';
 import { RoutePath } from '../core/enums/route.paths';
+import { ResetPasswordComponent } from './pages/reset-password/reset-password/reset-password.component';
+import { MailConfirmComponent } from './pages/mail-confirm/mail-confirm/mail-confirm.component';
 
 @Component({
   selector: 'eszsw-auth',
@@ -44,7 +46,7 @@ export class AuthComponent implements OnInit {
   // Just to show two ways of obtaining the data
   getCurrentContext() {
     if (this.ro && this.ro.component) {
-      this.context = (this.ro.component as LoginComponent | SignupComponent).getComponentTag;
+      this.context = (this.ro.component as LoginComponent | SignupComponent | ResetPasswordComponent | MailConfirmComponent).getComponentTag;
     }
   }
 
@@ -54,21 +56,15 @@ export class AuthComponent implements OnInit {
     this.loginLinkPath= RoutePath.SIGN_UP;
     this.textSignupLink= "You've already an account?";
     this.signupLinkLbl= 'Sign in!';
-    this.signupLinkPath= RoutePath.LOGIN;
+    this.signupLinkPath= '';
   }
 
-  get inLogin(): boolean {
-    let inlogin: boolean = false;
-    if (this.context === AuthComponentsTag.LOGIN) {
-      inlogin = true;
-    }
-    return inlogin;
-  }
-  get inSignUp(): boolean {
+  get inSignup(): boolean {
     let inSignup: boolean = false;
     if (this.context === AuthComponentsTag.SING_UP) {
       inSignup = true;
     }
     return inSignup;
   }
+ 
 }

@@ -1,4 +1,5 @@
 export enum RoutePath {
+    AUTH = 'auth',
     LOGIN = 'login',
     SIGN_UP = 'signup',
     RESET_PASSWORD = 'resetPassword',

@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'http://localhost:3000'
+  apiAuthUrl: 'http://localhost:3000',
+  apiUrl: 'https://demo-api.now.sh'
 };
 
 /*

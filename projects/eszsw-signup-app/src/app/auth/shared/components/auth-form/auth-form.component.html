@@ -1,61 +1,30 @@
 
-
-<!-- 
-<form class="form" (ngSubmit)="onSubmit(f)" #f="ngForm">
+<form *ngIf="form else loading" class="form" (ngSubmit)="onSubmit(f)" #f="ngForm">
     <fieldset class="form__fieldset">
         <legend class="sr-only">Login Form</legend>
-        <eszsw-custom-input 
-            [isRequired]="true" 
-            errorMsg="Please enter your name"
-            label="Username" 
-            ngModel 
-            name="username">
-        </eszsw-custom-input>
-        <eszsw-custom-input 
-            [isRequired]="true" 
-            errorMsg="Please enter your email"
-            label="Email" 
-            [pattern]="emailPattern" 
-            ngModel 
-            name="email">
-        </eszsw-custom-input>
-        <eszsw-custom-input 
-            [isRequired]="true" 
-            errorMsg="Please enter your password"
-            label="Password"  
-            ngModel 
-            name="password">
-        </eszsw-custom-input>
-        <button type="submit" 
-            class="form__btn" 
-            [ngClass]="{'disabled' : !f.valid}"
-            [disabled]="!f.valid">
-            Sign in
-        </button>
-    </fieldset>
-</form> -->
 
-
-<form class="form" (ngSubmit)="onSubmit(f)" #f="ngForm">
-    <fieldset class="form__fieldset">
-        <legend class="sr-only">Login Form</legend>
         <ng-container *ngFor="let inputControl of form.inputsControls">
             <eszsw-custom-input 
-                ngModel 
-                [isRequired]="inputControl.isRequired" 
-                [errorMsg]="inputControl.errorMsg"
-                [label]="inputControl.label" 
-                [name]="inputControl.name"
-                [type]="inputControl?.type"
-                [pattern]=inputControl?.pattern>
+            ngModel 
+            [errorMsg]="inputControl.errorMsg"
+            [label]="inputControl.label" 
+            [name]="inputControl.name"
+            [type]="inputControl?.type"
+            [pattern]=inputControl?.pattern
+            [controlValidation] = "inputControl.validations">
             </eszsw-custom-input>
         </ng-container>
-       
+
         <button type="submit" 
-            class="form__btn" 
-            [ngClass]="{'disabled' : !f.valid}"
-            [disabled]="!f.valid">
-            {{form.btnLabel}}
+        class="form__btn" 
+        [ngClass]="{'disabled' : !f.valid}"
+        [disabled]="f.valid">
+        {{form.btnLabel}}
         </button>
     </fieldset>
 </form>
+
+<ng-template #loading>
+    <eszsw-loading></eszsw-loading>
+</ng-template>
+

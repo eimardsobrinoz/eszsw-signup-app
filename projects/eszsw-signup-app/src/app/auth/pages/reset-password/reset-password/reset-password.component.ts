@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'projects/eszsw-signup-app/src/app/core/services/auth-service/auth.service';
 import { AuthForm } from '../../../shared/interfaces/auth-form.interface';
 import { RoutePath } from 'projects/eszsw-signup-app/src/app/core/enums/route.paths';
+import { AuthComponentsTag } from 'projects/eszsw-signup-app/src/app/core/config/consts';
 
 @Component({
   selector: 'eszsw-reset-password',
@@ -32,6 +33,10 @@ export class ResetPasswordComponent implements OnInit {
     this.authService.getResetPasswordForm().subscribe(
       (resetPasswordForm: AuthForm) => this.resetPasswordForm = resetPasswordForm
     );
+  }
+
+  get getComponentTag() {
+    return AuthComponentsTag.RESET_PASSWORD;
   }
 
 }

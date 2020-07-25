@@ -1,18 +1,34 @@
 <div class="formInputGroup">
 
     <label class="formInputGroup__label" for="userInput">{{label}} 
-        <span *ngIf="isRequired">*</span>
+        <span *ngIf="controlValidation.required">*</span>
     </label>
 
     <input #input
     class="formInputGroup__input" 
-    [ngClass]="{'error' : showError}"
+    [ngClass]="{'error' : isThereError}"
     [type]="type"  
     [disabled]="disabled"
     [placeholder]="placeholder"
     (input)="onChange($event.target.value)"
     (blur)="onTouched()">
 
-    <p class="formInputGroup__error" *ngIf="showError">{{errorMsg.emptyLbl}}</p>
+    <p class="formInputGroup__error" *ngIf="control?.touched && control?.errors?.required">
+        {{errorMsg.required}}
+    </p>
+    <p class="formInputGroup__error" *ngIf="control?.touched && control?.errors?.minlength">
+        Password should be a minimum of {{control?.errors?.minlength?.requiredLength}} characters
+    </p>
+    <p class="formInputGroup__error"
+     *ngIf="control?.touched && control?.errors?.lowerUppercaseFormat && !control?.errors?.required">
+        {{errorMsg.lowerUppercaseFormat}}
+    </p>
+    <p class="formInputGroup__error" *ngIf="control?.touched && control?.errors?.pattern">
+        {{errorMsg.format}}
+    </p>
+    <p class="formInputGroup__error" *ngIf="control?.touched && control?.errors?.mailNotAvailable">
+        {{errorMsg.mailNotAvailable}}
+    </p>
 
+    {{control?.errors | json}}
 </div>

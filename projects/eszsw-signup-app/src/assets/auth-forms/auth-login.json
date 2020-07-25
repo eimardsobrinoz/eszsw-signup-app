@@ -4,7 +4,7 @@
             "isRequired": true,
             "label": "Email",
             "errorMsg": {
-                "emptyLbl": "Enter email",
+                "emptyLbl": "Email field is required",
                 "formatLbl": "Error in email format"
             },
             "name": "Email",

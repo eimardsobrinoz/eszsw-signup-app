@@ -2,25 +2,31 @@
     "loginForm": {
         "inputsControls": [
             {
-                "isRequired": true,
                 "label": "Email",
                 "errorMsg": {
-                    "emptyLbl": "Enter email",
-                    "formatLbl": "Error in email format"
+                    "required": "Email field is required",
+                    "format": "Email format not correct"
                 },
                 "name": "Email",
-                "type": "mail",
-                "pattern": "[A-Za-z0-9._%-]+@[A-Za-z0-9._%-]+\\.[a-z]{2,3}"
+                "type": "email",
+                "validations": {
+                    "required": true,
+                    "pattern": "[A-Za-z0-9._%-]+@[A-Za-z0-9._%-]+\\.[a-z]{2,3}"
+                }
             },
             {
-                "isRequired": true,
                 "label": "Password",
                 "errorMsg": {
-                    "emptyLbl": "Enter password",
-                    "formatLbl": "Error in password format"
+                    "required": "Passwors field is required",
+                    "lowerUppercaseFormat": "Password should contain lower and uppercase letters"
                 },
                 "name": "Password",
-                "type": "password"
+                "type": "password",
+                "validations": {
+                    "required": true,
+                    "minLength": 8,
+                    "lowerUppercaseFormat": true
+                }
             }
         ],
         "btnLabel": "Sign In"
@@ -28,33 +34,53 @@
     "signupForm": {
         "inputsControls": [
             {
-                "isRequired": true,
-                "label": "Username",
+                "label": "Name",
                 "errorMsg": {
-                    "emptyLbl": "Enter usermane"
+                    "required": "Enter name"
                 },
-                "name": "Username"
+                "name": "name",
+                "validations": {
+                    "required": true
+                }
             },
             {
-                "isRequired": true,
+                "label": "Last name",
+                "errorMsg": {
+                    "required": "Enter last name"
+                },
+                "name": "lastname",
+                "validations": {
+                    "required": true
+                }
+            },
+            {
                 "label": "Email",
                 "errorMsg": {
-                    "emptyLbl": "Enter email",
-                    "formatLbl": "Error in email format"
+                    "required": "Email field is required",
+                    "format": "Email format not correct",
+                    "mailNotAvailable": "Email not available"
                 },
                 "name": "Email",
                 "type": "email",
-                "pattern": "[A-Za-z0-9._%-]+@[A-Za-z0-9._%-]+\\.[a-z]{2,3}"
+                "validations": {
+                    "required": true,
+                    "pattern": "[A-Za-z0-9._%-]+@[A-Za-z0-9._%-]+\\.[a-z]{2,3}",
+                    "available": true
+                }
             },
             {
-                "isRequired": true,
                 "label": "Password",
                 "errorMsg": {
-                    "emptyLbl": "Enter password",
-                    "formatLbl": "Error in password format"
+                    "required": "Passwors field is required",
+                    "lowerUppercaseFormat": "Password should contain lower and uppercase letters"
                 },
                 "name": "Password",
-                "type": "password"
+                "type": "password",
+                "validations": {
+                    "required": true,
+                    "minLength": 8,
+                    "lowerUppercaseFormat": true
+                }
             }
         ],
         "btnLabel": "Sign Up"
@@ -62,15 +88,17 @@
     "mailConfirmationForm": {
         "inputsControls": [
             {
-                "isRequired": true,
                 "label": "Verification email",
                 "errorMsg": {
-                    "emptyLbl": "Enter verification email",
-                    "formatLbl": "Error in email format"
+                    "required": "Enter verification email",
+                    "format": "Email format not correct"
                 },
                 "name": "verifycationEmail",
-                "type": "mail",
-                "pattern": "[A-Za-z0-9._%-]+@[A-Za-z0-9._%-]+\\.[a-z]{2,3}"
+                "type": "email",
+                "validations": {
+                    "required": true,
+                    "pattern": "[A-Za-z0-9._%-]+@[A-Za-z0-9._%-]+\\.[a-z]{2,3}"
+                }
             }
         ],
         "btnLabel": "Send verification email"
@@ -78,36 +106,51 @@
     "resetPasswordForm": {
         "inputsControls": [
             {
-                "isRequired": true,
                 "label": "Current Password",
                 "errorMsg": {
-                    "emptyLbl": "Enter current password",
-                    "formatLbl": "Error in password format"
+                    "required": "Enter current password",
+                    "lowerUppercaseFormat": "Password should contain lower and uppercase letters"
                 },
                 "name": "currentPassword",
-                "type": "password"
+                "type": "password",
+                "validations": {
+                    "required": true,
+                    "minLength": 8,
+                    "lowerUppercaseFormat": true
+                }
             },
             {
-                "isRequired": true,
                 "label": "New Password",
                 "errorMsg": {
-                    "emptyLbl": "Enter new password",
-                    "formatLbl": "Error in password format"
+                    "required": "Enter new password",
+                    "lowerUppercaseFormat": "Password should contain lower and uppercase letters"
                 },
                 "name": "newPassword1",
-                "type": "password"
+                "type": "password",
+                "validations": {
+                    "required": true,
+                    "minLength": 8,
+                    "lowerUppercaseFormat": true
+                }
             },
             {
-                "isRequired": true,
                 "label": "Repeat new password",
                 "errorMsg": {
-                    "emptyLbl": "Enter password confirmation",
-                    "formatLbl": "Error in password format"
+                    "required": "Passwors field is required confirmation",
+                    "lowerUppercaseFormat": "Password should contain lower and uppercase letters"
                 },
                 "name": "newPassword2",
-                "type": "password"
+                "type": "password",
+                "validations": {
+                    "required": true,
+                    "minLength": 8,
+                    "lowerUppercaseFormat": true
+                }
             }
         ],
         "btnLabel": "Change Password"
+    },
+    "isValidEmail":{
+        "status": false
     }
 }

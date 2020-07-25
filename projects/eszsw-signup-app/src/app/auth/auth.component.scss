@@ -2,15 +2,16 @@
 
 
 h1.formTitle {
-    font-size: 4rem;
+    font-size: 3rem;
     font-weight: bold;
     line-height: initial;
     text-align: center;
     margin-left: auto;
     margin-right: auto;
+    margin-bottom: 10px;
 }
 .formText {
-    font-size: 2rem;
+    font-size: 1rem;
     margin-bottom:10px;
 }
 
@@ -22,15 +23,20 @@ h1.formTitle {
 
 // Tablet resolution
 @media(min-width:$esz-min-tablet-resolution) {
+    h1.formTitle {
+        font-size: 4rem;
+    }
+
     .formLayout {
         width: 80%;
+    }
+    .formText {
+        margin-bottom:20px;
     }
 }
 // Desktop resolution
 @media(min-width:$esz-min-desktop-resolution) {
-    .wrapperContent {
-        padding-top: 80px;
-    }
+
     .formLayout {
         width: 70%;
     }

@@ -23,34 +23,34 @@ export class HttpService {
   * @params data
   */
 
-  requestCall(api: AuthEndPoints, method: ApiMethod, data?: Observable<any>) {
+  requestCall(api: AuthEndPoints, method: ApiMethod, apiUrl:string = environment.apiUrl, data?: any): Observable<any> {
     let body = {};
-    let response;
+    let response: Observable<any>;
     switch (method) {
       case ApiMethod.GET:
-        response = this.http.get(`${environment.apiUrl}${api}`);
+        response = this.http.get(`${apiUrl}${api}`);
           
         break;
       case ApiMethod.POST:
         if (data) {
           body = data;
         }
-        response = this.http.post(`${environment.apiUrl}${api}`, body);
+        response = this.http.post(`${apiUrl}${api}`, body);
           
         break;
       case ApiMethod.PUT:
         if (data) {
           body = data;
         }
-        response = this.http.put(`${environment.apiUrl}${api}`, body);
+        response = this.http.put(`${apiUrl}${api}`, body);
           
         break;
       case ApiMethod.DELETE:
-        response = this.http.delete(`${environment.apiUrl}${api}`);
+        response = this.http.delete(`${apiUrl}${api}`);
           
         break;
       default:
-        response = this.http.get(`${environment.apiUrl}${api}`);
+        response = this.http.get(`${apiUrl}${api}`);
           
         break;
     }

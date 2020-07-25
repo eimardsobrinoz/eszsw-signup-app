@@ -1,15 +1,18 @@
 
-<eszsw-text-link *ngIf="inLogin" 
-[text]="textLoginLink" 
-[linkLbl]="loginLinkLbl" 
-[linkPath]="loginLinkPath"
-styleClass="alignRight"></eszsw-text-link>
+<eszsw-text-link *ngIf="inSignup else loginLink"  
+    [text]="textSignupLink" 
+    [linkLbl]="signupLinkLbl" 
+    [linkPath]="signupLinkPath"
+    styleClass="alignRight"></eszsw-text-link>
 
-<eszsw-text-link *ngIf="inSignUp" 
-[text]="textSignupLink" 
-[linkLbl]="signupLinkLbl" 
-[linkPath]="signupLinkPath"
-styleClass="alignRight"></eszsw-text-link>
+<ng-template #loginLink>
+    <eszsw-text-link 
+    [text]="textLoginLink" 
+    [linkLbl]="loginLinkLbl" 
+    [linkPath]="loginLinkPath"
+    styleClass="alignRight"></eszsw-text-link>
+</ng-template>
+
 
 <div class="wrapperContent">
     <router-outlet  (activate)="onActivate()"></router-outlet> 

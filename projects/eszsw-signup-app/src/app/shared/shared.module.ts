@@ -1,28 +1,23 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MatButtonModule } from '@angular/material/button';
-import {MatCardModule} from '@angular/material/card';
 import { RouterModule } from '@angular/router';
+import { LoadingComponent } from './components/loading/loading/loading.component';
 
 
 
 @NgModule({
-  declarations: [],
+  declarations: [LoadingComponent],
   imports: [
     //vendor
     CommonModule,
     RouterModule,
-    //material
-    MatCardModule,
-    MatButtonModule
   ],
   exports: [
     //vendor
     CommonModule,
     RouterModule,
-    //material
-    MatCardModule,
-    MatButtonModule,
+    //added
+    LoadingComponent
   ]
 })
 export class SharedModule { }
