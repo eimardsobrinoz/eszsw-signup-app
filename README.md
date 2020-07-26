@@ -5,13 +5,15 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 It consits in a single page app with a sign-up form.
 The form should allow users to enter first name, last name, email, and password, and all the fields
 are required.
-• Password validation:
-o Should be a minimum of eight characters,
-o Should contain lower and uppercase letters,
-o Should not contain user’s first or last name.
 
-• Email validate used pattern and asyncronous validation checking if it is registered emulating api call.
-• The form send a POST request to https://demo-api.now.sh/users with the below request body example:
+• Password and email validation:
+
+- Should be a minimum of eight characters,
+- Should contain lower and uppercase letters,
+- Should not contain user’s first or last name.
+
+- Email validate used pattern and asyncronous validation checking if it is registered emulating api call.
+- The form send a POST request to https://demo-api.now.sh/users with the below request body example:
 
 { firstName: "Eimard", lastName: "Sobrino", email: "eimard@sobrino.co.uk" }
 
@@ -141,7 +143,7 @@ First Version
 
 ## Authors
 
-* **Eimard Sobrino Zurera** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
+* **Eimard Sobrino Zurera** 
 
 Have a look at his:
 - linkeidn profile [linkedin](linkedin.com/in/eimardsobrinozurera) 
