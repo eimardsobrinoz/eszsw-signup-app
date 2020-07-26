@@ -5,6 +5,7 @@ export interface AuthValidation {
   available?: boolean;
   minLength?: number;
   lowerUppercaseFormat?: boolean;
+  containsOthersControlsValue: string[]
 }
 
 export enum AuthFormStatus {

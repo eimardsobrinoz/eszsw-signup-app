@@ -59,7 +59,7 @@
                 "errorMsg": {
                     "required": "Email field is required",
                     "format": "Please provide a valid email address",
-                    "mailNotAvailable": "Email slready registered"
+                    "mailNotAvailable": "Email already registered"
                 },
                 "name": "email",
                 "type": "email",

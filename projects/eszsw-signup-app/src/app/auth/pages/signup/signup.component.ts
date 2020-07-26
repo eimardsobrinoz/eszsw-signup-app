@@ -5,7 +5,7 @@ import { AuthForm } from './../../shared/interfaces/auth-form.interface';
 import { AuthService } from 'projects/eszsw-signup-app/src/app/core/services/auth-service/auth.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { AuthComponentsTag } from '../../../core/enums/component-tags';
-import { FormGroup } from '@angular/forms';
+import { FormGroup, FormControl, AbstractControl } from '@angular/forms';
 import { Observable } from 'rxjs/internal/Observable';
 import { Router } from '@angular/router';
 import { AccountService } from '../../../core/services/account-service/account.service';
@@ -28,16 +28,16 @@ export class SignupComponent implements OnInit {
     this.getFormData();
   }
 
-  getFormData(): void {
+  ngAfterViewInit(): void {
+    // this.setPasswordValidations();
+  }
+
+  public getFormData(): void {
     // The way to get the data as considered. Potential of dynamic forms. From json, static services, backend, etc 
     this.signUpForm = this.authService.getSignUpForm();
   }
 
-  get getComponentTag(){
-    return AuthComponentsTag.SING_UP;
-  }
-
-  signUp(form: FormGroup) {
+  public signUp(form: FormGroup): void {
     const user: User = {
       firstName: form.get('firstname')?.value,
       lastName: form.get('lastname')?.value,
@@ -52,6 +52,15 @@ export class SignupComponent implements OnInit {
         console.log('Error: ',error);
       }
     );
+  }
+
+  // setPasswordValidations() {
+  //   const firstNameControl: any = this.formComponent.formGroup.controls['lastname'];
+  //   console.log('Emilioo firstNAme control in signup: ', firstNameControl);
+  // }
+
+  get getComponentTag(){
+    return AuthComponentsTag.SING_UP;
   }
 
 

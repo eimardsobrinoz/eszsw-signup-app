@@ -31,6 +31,10 @@
         <p class="formInputGroup__wrapperInput__text error" *ngIf="control?.touched && control?.errors?.pattern">
             {{errorMsg.format}}
         </p>
+        <p class="formInputGroup__wrapperInput__text error" *ngIf="control?.touched && control?.errors?.passwordContainsNameOrLastname">
+            Password should not contain user’s first or last name
+        </p>
+
 
         <ng-container *ngIf="controlValidation.available">
             <ng-container *ngIf="statusPending">

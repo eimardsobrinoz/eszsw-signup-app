@@ -4,4 +4,5 @@ export interface ErrorFormMessage {
   minLength?: string;
   lowerUppercaseFormat?: string;
   mailNotAvailable?: string;
+  containsOthersControlsValue?:string;
 }

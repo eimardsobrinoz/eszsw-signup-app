@@ -1,7 +1,7 @@
 import { Observable, isObservable } from 'rxjs';
 import { AuthForm } from './../../interfaces/auth-form.interface';
 import { Component, OnInit, Input, Output, EventEmitter, ViewChild } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormGroup, FormControl, Validators, AbstractControl } from '@angular/forms';
 import { AuthFormStatus } from '../../interfaces/auth-validation.inteface';
 
 @Component({
@@ -49,7 +49,12 @@ export class AuthFormComponent implements OnInit  {
   }
 
   public buildFormGroup(): void {
-    (this.formFormat as AuthForm)?.inputsControls?.forEach( control => this.formGroup.addControl(control.name, new FormControl('',[Validators.required])));
+    (this.formFormat as AuthForm)?.inputsControls?.forEach( control => {
+      this.formGroup.addControl(control.name, new FormControl('',[Validators.required]));
+    });
+    if (this.formGroup.get('password') && this.formGroup.get('firstname') && this.formGroup.get('lastname')) {
+      this.formGroup.get('password')?.setValidators(this.passwordContainsNameOrLastnameValidator.bind(this));
+    }
   }
 
 
@@ -66,6 +71,20 @@ export class AuthFormComponent implements OnInit  {
     });
   }
 
+  setControlContainsValidation() {
+
+  }
+
+  passwordContainsNameOrLastnameValidator(control: AbstractControl): { [k: string]: boolean } | null {
+    const firstNameControl: string = (this.formGroup.get('firstname') as AbstractControl).value as string;
+    const lastNameControl: string = (this.formGroup.get('lastname') as AbstractControl).value as string;
+    const passwordControl: string = control.value as string;
+    console.log('Emilioo firstNAme control in signup: ', firstNameControl);
+    if ((passwordControl.indexOf(firstNameControl) > -1) || (passwordControl.indexOf(lastNameControl) > -1)) {
+      return { passwordContainsNameOrLastname: true }
+    }
+    return null;
+  }
 
   public onSubmit(): void {
     this.onSubmitForm.emit(this.formGroup);
