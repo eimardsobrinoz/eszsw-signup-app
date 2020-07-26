@@ -12,10 +12,10 @@ import { AuthComponentsTag } from 'projects/eszsw-signup-app/src/app/core/enums/
 })
 export class ResetPasswordComponent implements OnInit {
 
-  resetPasswordForm: AuthForm | Observable<AuthForm>;
-  textLink:string;
-  linkLbl:string;
-  linkPath:string;
+  public resetPasswordForm: AuthForm | Observable<AuthForm>;
+  public textLink:string;
+  public linkLbl:string;
+  public linkPath:string;
 
   constructor(private authService: AuthService) { }
 
@@ -23,14 +23,14 @@ export class ResetPasswordComponent implements OnInit {
     this.initialize();
   }
 
-  initialize() {
+  public initialize(): void {
     this.getFormData();
     this.textLink= 'Remembered your password?';
     this.linkLbl= 'Sign In!';
     this.linkPath= RoutePath.LOGIN;
   }
 
-  getFormData(): void {
+  public getFormData(): void {
     this.resetPasswordForm = this.authService.getResetPasswordForm();
   }
 

@@ -1,5 +1,4 @@
 import { CompleteFormGuard } from './../core/guards/completeForm/complete-form.guard';
-import { ComponentTag } from './../core/interfaces/component-tag.interface';
 import { RoutePath } from '../core/enums/route.paths';
 import { MailConfirmComponent } from './pages/mail-confirm/mail-confirm/mail-confirm.component';
 import { ResetPasswordComponent } from './pages/reset-password/reset-password/reset-password.component';

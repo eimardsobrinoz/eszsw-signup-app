@@ -25,10 +25,10 @@ import { TextLinkComponent } from './shared/components/text-link/text-link.compo
     TextLinkComponent  
   ],
   imports: [
-    SharedModule,
-    AuthRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    SharedModule,
+    AuthRoutingModule 
   ]
 })
 export class AuthModule { }

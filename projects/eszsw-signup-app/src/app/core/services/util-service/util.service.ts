@@ -6,7 +6,8 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class UtilService {
-  encrypKey: string = 'AIzaSyBnzbMr90FUKJOFHDErlHbX1WGIkBLYPE'
+
+  public encrypKey: string = 'AIzaSyBnzbMr90FUKJOFHDErlHbX1WGIkBLYPE'
 
   constructor() { }
 
@@ -15,7 +16,6 @@ export class UtilService {
    * @params data
    * @params key
    */
-
    decrypt(data: string, key:string = this.encrypKey): string {
     // return AES.decrypt(data, key).toString(enc.Utf8);
     return '';

@@ -1,6 +1,6 @@
 import { AuthGuard } from './core/guards/auth/auth.guard';
 import { RoutePath } from 'projects/eszsw-signup-app/src/app/core/enums/route.paths';
-import { RouterModule, Routes, CanActivate } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 import { AuthComponent } from './auth/auth.component';
 
 const routes: Routes = [
@@ -30,6 +30,5 @@ const routes: Routes = [
       redirectTo: 'auth' 
     } 
   ];
-
 
 export const APP_ROUTES = RouterModule.forRoot( routes, { useHash: true } );

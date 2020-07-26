@@ -1,30 +1,35 @@
 import { Injectable } from '@angular/core';
-import { CustomErrorCodes, ClientError, SuccessCodes } from '../../enums/error-codes';
+import { CustomErrorCodes, ClientError } from '../../enums/error-codes';
+import { AuthService } from '../auth-service/auth.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ErrorService {
 
-  constructor() { }
+  constructor(private authService: AuthService) { }
 
-  whichError(errorCode: number, errorMessage: string) {
+  public whichError(errorCode: number, errorMessage: string):void {
+    let errorType: string = '';
+    // It allows us to navigate to specific error screen or generic on, tracking the error message
     switch(errorCode) {
       case CustomErrorCodes.UN_KNOWN:
-        // 'Server is Down'
+        break;
+      case ClientError.HTTP_401_UNAUTHORIZED:
+        // Logout anauthorized user
+        errorType = 'User Unauthorized';
+        this.authService.logout();
         break;
       case ClientError.HTTP_400_BAD_REQUEST:
         break;
       default:
         alert('Unkown Error Code');
     }
+    this.notifyUser(errorType,errorMessage);
   }
-  userNotification(notificationCode: number, notification: string) {
-    switch(notificationCode) {
-      case SuccessCodes.HTTP_200_OK:
-        break;
-      default:
-        alert('Unkown Success Action');
-    }
+
+  // We can send error information to Kibana to track the errors
+  public notifyUser(errorType:string, notification: string):void {
+    alert(errorType + notification);
   }
 }

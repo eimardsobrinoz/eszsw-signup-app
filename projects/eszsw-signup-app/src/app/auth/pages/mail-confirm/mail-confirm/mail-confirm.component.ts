@@ -11,11 +11,11 @@ import { AuthComponentsTag } from 'projects/eszsw-signup-app/src/app/core/enums/
 })
 export class MailConfirmComponent implements OnInit {
 
-  mailConfirmForm: AuthForm | Observable<AuthForm>;
-  mailConfirmtxt: string;
-  textLink: string;
-  linkLbl: string;
-  linkPath: string;
+  public mailConfirmForm: AuthForm | Observable<AuthForm>;
+  public mailConfirmtxt: string;
+  public textLink: string;
+  public linkLbl: string;
+  public linkPath: string;
 
   constructor(private authService: AuthService) { }
 
@@ -23,14 +23,14 @@ export class MailConfirmComponent implements OnInit {
     this.initialize();
   }
 
-  initialize() {
+  public initialize() {
     this.getFormData();
     this.mailConfirmtxt = 'Please input your email again and we will send you a confirmation mail in order to verify your identity';
     this.textLink = 'Better to go back?';
     this.linkLbl = 'Sign In!';
     this.linkPath = '';
   }
-  getFormData(): void {
+  public getFormData(): void {
     this.mailConfirmForm = this.authService.getMailConfirmForm();
   }
 

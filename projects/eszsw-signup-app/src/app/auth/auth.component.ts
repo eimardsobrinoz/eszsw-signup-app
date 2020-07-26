@@ -1,7 +1,7 @@
 import { AuthComponentsTag } from '../core/enums/component-tags';
 import { SignupComponent } from './pages/signup/signup.component';
 import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
-import { RouterOutlet, ActivatedRoute, Router, NavigationEnd, ActivationEnd } from '@angular/router';
+import { RouterOutlet, Router, ActivationEnd } from '@angular/router';
 import { LoginComponent } from './pages/login/login.component';
 import { filter, map, first } from 'rxjs/operators';
 import { ComponentTag } from '../core/interfaces/component-tag.interface';
@@ -18,12 +18,12 @@ import { MailConfirmComponent } from './pages/mail-confirm/mail-confirm/mail-con
 export class AuthComponent implements OnInit {
   @ViewChild(RouterOutlet) ro: RouterOutlet;
 
-  textLoginLink: string;
-  loginLinkLbl: string;
-  loginLinkPath: string; 
-  textSignupLink: string; 
-  signupLinkLbl: string; 
-  signupLinkPath: string; 
+  public textLoginLink: string;
+  public loginLinkLbl: string;
+  public loginLinkPath: string; 
+  public textSignupLink: string; 
+  public signupLinkLbl: string; 
+  public signupLinkPath: string; 
 
   public context: string;
 
@@ -39,24 +39,24 @@ export class AuthComponent implements OnInit {
     this.initialize();
   }
 
-  onActivate(): void {
+  public onActivate(): void {
     this.getCurrentContext();
   }
 
-  // Just to show two ways of obtaining the data
-  getCurrentContext() {
-    if (this.ro && this.ro.component) {
-      this.context = (this.ro.component as LoginComponent | SignupComponent | ResetPasswordComponent | MailConfirmComponent).getComponentTag;
-    }
-  }
-
-  initialize() {
+  public initialize(): void {
     this.textLoginLink= 'Not a Member?';
     this.loginLinkLbl= 'Sign up!';
     this.loginLinkPath= RoutePath.SIGN_UP;
     this.textSignupLink= "You've already an account?";
     this.signupLinkLbl= 'Sign in!';
     this.signupLinkPath= '';
+  }
+
+  // Just to show two ways of obtaining the data
+  public getCurrentContext(): void {
+    if (this.ro && this.ro.component) {
+      this.context = (this.ro.component as LoginComponent | SignupComponent | ResetPasswordComponent | MailConfirmComponent).getComponentTag;
+    }
   }
 
   get inSignup(): boolean {

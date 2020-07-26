@@ -7,6 +7,7 @@ import { User } from '../../interfaces/user-interface';
 export class AccountService {
 
   private _activeUser: User | null;
+
   constructor() { }
 
   public isUserLogged(): boolean {
@@ -20,6 +21,7 @@ export class AccountService {
   get getActiveUser(): User | null{
     return this._activeUser;
   }
+  
   public setActiveUser(user: User | null): void {
     this._activeUser = user;
   }

@@ -5,7 +5,7 @@ import { AuthForm } from './../../shared/interfaces/auth-form.interface';
 import { AuthService } from 'projects/eszsw-signup-app/src/app/core/services/auth-service/auth.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { AuthComponentsTag } from '../../../core/enums/component-tags';
-import { FormGroup, FormControl, AbstractControl } from '@angular/forms';
+import { FormGroup } from '@angular/forms';
 import { Observable } from 'rxjs/internal/Observable';
 import { Router } from '@angular/router';
 import { AccountService } from '../../../core/services/account-service/account.service';
@@ -19,17 +19,12 @@ export class SignupComponent implements OnInit {
 
   @ViewChild('formComponent') formComponent:AuthFormComponent;
 
-  signUpForm: AuthForm | Observable<AuthForm>;
+  public signUpForm: AuthForm | Observable<AuthForm>;
 
-  constructor(private authService: AuthService, private accountService: AccountService,
-              private router: Router) { }
+  constructor(private authService: AuthService, private accountService: AccountService, private router: Router) { }
 
   ngOnInit(): void {
     this.getFormData();
-  }
-
-  ngAfterViewInit(): void {
-    // this.setPasswordValidations();
   }
 
   public getFormData(): void {
@@ -44,24 +39,14 @@ export class SignupComponent implements OnInit {
       email: form.get('email')?.value
     }
     this.authService.signUp(user).subscribe( res => {
-        console.log('Success: ',res);
         this.accountService.setActiveUser(user); 
         this.router.navigate([RoutePath.HOME]);
-      },
-      (error: Event) => {
-        console.log('Error: ',error);
       }
     );
   }
 
-  // setPasswordValidations() {
-  //   const firstNameControl: any = this.formComponent.formGroup.controls['lastname'];
-  //   console.log('Emilioo firstNAme control in signup: ', firstNameControl);
-  // }
-
   get getComponentTag(){
     return AuthComponentsTag.SING_UP;
   }
-
 
 }

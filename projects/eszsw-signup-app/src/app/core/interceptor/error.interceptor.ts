@@ -1,24 +1,34 @@
-import { AuthService } from 'projects/eszsw-signup-app/src/app/core/services/auth.service';
+import { ErrorService } from './../services/error-service/error.service';
 import { Injectable } from '@angular/core';
-import { catchError } from 'rxjs/operators';
-import { HttpRequest, HttpHandler, HttpEvent, HttpInterceptor } from '@angular/common/http';
+import { catchError, retry } from 'rxjs/operators';
+import { HttpRequest, HttpHandler, HttpEvent, HttpInterceptor, HttpErrorResponse } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 
 
 
 @Injectable()
 export class ErrorInterceptor implements HttpInterceptor {
-    constructor(private authService: AuthService) {}
+    constructor(private errorService:ErrorService) {}
 
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-        return next.handle(request).pipe(catchError(err => {
-            if (err.status === 401) {
-                // auto logout if 401 response returned from api
-                this.authService.logout();
-            }
-            
-            const error = err.error.message || err.statusText;
-            return throwError(error);
-        }))
+        return next.handle(request).pipe(
+            retry(1),
+            catchError( (err: HttpErrorResponse) =>  this.handleError(err)
+        ))
     }
+
+  /**
+   * This function is used to handle the received error when calling any api 
+   * @params error
+   */
+    handleError(error: HttpErrorResponse): Observable<HttpEvent<any>> {
+    let error$: Observable<HttpEvent<any>> = throwError(error);
+    if(error.error instanceof ErrorEvent) {
+      console.log('An error occurred: ',error.message);
+    } else {
+      this.errorService.whichError(error.status, error.message);
+      error$ = throwError( {error: error.message, status: error.status});
+    }
+    return error$;
+  }
 }

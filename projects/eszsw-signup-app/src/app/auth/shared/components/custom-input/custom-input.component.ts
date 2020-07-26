@@ -1,9 +1,8 @@
 import { AuthFormStatus } from './../../interfaces/auth-validation.inteface';
 import { ErrorFormMessage } from './../../interfaces/error-form-message.interface';
-import { Component, OnInit, Input, Self, ViewChild, ElementRef, ChangeDetectorRef, ChangeDetectionStrategy } from '@angular/core';
-import {
-  ControlValueAccessor, Validator, AbstractControl,
-  ValidatorFn, Validators, NgControl, AsyncValidatorFn
+import { Component, OnInit, Input, Self, ViewChild, ElementRef } from '@angular/core';
+import {ControlValueAccessor, Validator, AbstractControl, ValidatorFn, Validators,
+        NgControl, AsyncValidatorFn
 } from '@angular/forms';
 import { AuthValidation } from '../../interfaces/auth-validation.inteface';
 import { AuthService } from 'projects/eszsw-signup-app/src/app/core/services/auth-service/auth.service';
@@ -16,18 +15,16 @@ import { delay } from 'rxjs/operators';
 })
 export class CustomInputComponent implements ControlValueAccessor, Validator, OnInit {
 
-
   @ViewChild('input') input: ElementRef;
-
   @Input() type: string = 'text';
   @Input() controlValidation: AuthValidation;
   @Input() pattern: string = '';
   @Input() label: string = '';
   @Input() placeholder: string = '';
   @Input() errorMsg: ErrorFormMessage;
+
   public isDisabled: boolean;
   public control: AbstractControl | null;
-
 
   constructor(@Self() private controlDirective: NgControl, private authService: AuthService) {
     controlDirective.valueAccessor = this;
@@ -35,29 +32,6 @@ export class CustomInputComponent implements ControlValueAccessor, Validator, On
 
   ngOnInit(): void {
     setTimeout(() => this.setValidation(), 0);
-  }
-
-  setValidation() {
-    if (this.controlDirective && this.controlDirective.control) {
-      this.control = this.controlDirective.control;
-
-      let syncValidators: ValidatorFn[] = [];
-      let asyncValidators: AsyncValidatorFn[] = [];
-      if (this.control.validator) {
-        syncValidators = [this.control.validator];
-      }
-      if (this.control.asyncValidator) {
-        asyncValidators = [this.control.asyncValidator];;
-      }
-
-      this.setSyncronousValidation(syncValidators);
-      this.setASyncronousValidation(asyncValidators);
-
-
-      this.control.setValidators(syncValidators);
-      this.control.setAsyncValidators(asyncValidators);
-      this.control.updateValueAndValidity();
-    }
   }
 
   onChange(event: Event) { }
@@ -85,7 +59,29 @@ export class CustomInputComponent implements ControlValueAccessor, Validator, On
     return validators;
   }
 
-  setSyncronousValidation(syncValidators: ValidatorFn[]) {
+  public setValidation(): void {
+    if (this.controlDirective && this.controlDirective.control) {
+      this.control = this.controlDirective.control;
+      let syncValidators: ValidatorFn[] = [];
+      let asyncValidators: AsyncValidatorFn[] = [];
+
+      if (this.control.validator) {
+        syncValidators = [this.control.validator];
+      }
+      if (this.control.asyncValidator) {
+        asyncValidators = [this.control.asyncValidator];;
+      }
+
+      this.setSyncronousValidation(syncValidators);
+      this.setASyncronousValidation(asyncValidators);
+
+      this.control.setValidators(syncValidators);
+      this.control.setAsyncValidators(asyncValidators);
+      this.control.updateValueAndValidity();
+    }
+  }
+
+  public setSyncronousValidation(syncValidators: ValidatorFn[]): void {
     if (this.controlValidation.required) {
       syncValidators.push(Validators.required);
     } else {
@@ -104,14 +100,13 @@ export class CustomInputComponent implements ControlValueAccessor, Validator, On
       syncValidators.push(this.lowercaseValidator);
     }
   }
-  setASyncronousValidation(asyncValidators: AsyncValidatorFn[]) {
+  public setASyncronousValidation(asyncValidators: AsyncValidatorFn[]): void {
     if (this.controlValidation.available) {
       asyncValidators.push(this.availableMail.bind(this));
     }
   }
 
-
-  lowercaseValidator(c: AbstractControl): { [k: string]: boolean } | null {
+  public lowercaseValidator(c: AbstractControl): { [k: string]: boolean } | null {
     let regexLowercase = /[a-z]/g;
     let regexUppercase = /[A-Z]/g;
     if (regexLowercase.test(c.value) && regexUppercase.test(c.value)) {
@@ -122,7 +117,7 @@ export class CustomInputComponent implements ControlValueAccessor, Validator, On
   }
 
   // Asyncronous Validation example
-  availableMail(control: AbstractControl): Promise<{ [k: string]: boolean } | null> {
+  public availableMail(control: AbstractControl): Promise<{ [k: string]: boolean } | null> {
     return new Promise<{ [k: string]: boolean } | null>((resolve, reject) => {
       // Emulating checking in the data Base if it is available with delay operator
       this.authService.isValidEmail(control.value)

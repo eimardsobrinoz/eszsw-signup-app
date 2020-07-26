@@ -7,14 +7,6 @@ describe('CustomInputComponent', () => {
   let component: CustomInputComponent;
   let fixture: ComponentFixture<CustomInputComponent>;
 
-  // beforeEach(async(() => {
-  //   TestBed.configureTestingModule({
-  //     imports: [ ReactiveFormsModule ],
-  //     declarations: [ CustomInputComponent ]
-  //   })
-  //   .compileComponents();
-  // }));
-
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [
@@ -42,7 +34,4 @@ describe('CustomInputComponent', () => {
     fixture.detectChanges();
   });
 
-  // it('should create', () => {
-  //   expect(component).toBeTruthy();
-  // });
 });

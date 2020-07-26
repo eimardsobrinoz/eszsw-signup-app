@@ -1,9 +1,9 @@
+import { FormGroup } from '@angular/forms';
 import { RoutePath } from '../../../core/enums/route.paths';
 import { AuthService } from 'projects/eszsw-signup-app/src/app/core/services/auth-service/auth.service';
 import { AuthForm } from './../../shared/interfaces/auth-form.interface';
 import { Component, OnInit } from '@angular/core';
 import { AuthComponentsTag } from '../../../core/enums/component-tags';
-import { NgForm, FormGroup } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 
@@ -14,10 +14,10 @@ import { Observable } from 'rxjs';
 })
 export class LoginComponent implements OnInit {
 
-  loginForm: AuthForm | Observable<AuthForm>;
-  textLink: string;
-  linkLbl: string;
-  linkPath: string;
+  public loginForm: AuthForm | Observable<AuthForm>;
+  public textLink: string;
+  public linkLbl: string;
+  public linkPath: string;
 
   constructor(private authService: AuthService, private router: Router, private route: ActivatedRoute) {
   }
@@ -26,24 +26,23 @@ export class LoginComponent implements OnInit {
     this.initialize();
   }
 
-  initialize() {
+  public initialize(): void {
     this.getFormData();
     this.textLink = 'Forgot your password?';
     this.linkLbl = 'Change it now!';
     this.linkPath = RoutePath.RESET_PASSWORD;
   }
 
-  getFormData(): void {
+  public getFormData(): void {
     this.loginForm =  this.authService.getLoginForm();
+  }
+
+  public login(form: FormGroup): void {
+    this.router.navigate([RoutePath.MAIL_CONFIRMATION], { relativeTo: this.route });
   }
 
   get getComponentTag() {
     return AuthComponentsTag.LOGIN;
-  }
-
-
-  login(form: FormGroup) {
-    this.router.navigate([RoutePath.MAIL_CONFIRMATION], { relativeTo: this.route });
   }
 
 }

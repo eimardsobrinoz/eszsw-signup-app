@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
 import { UtilService } from '../util-service/util.service';
 
 @Injectable({
@@ -7,24 +6,25 @@ import { UtilService } from '../util-service/util.service';
 })
 export class StorageService {
 
-  constructor(
-    private util: UtilService,
-    private router:Router
-  ) {}
+  constructor(private util: UtilService) {}
 
-  saveToken(token: string):void {
+  public saveToken(token: string): void {
     localStorage.setItem('$esz-token', token);
   }
-  getToken() {
+
+  public getToken(): string | null {
     return localStorage.getItem('$esz-token');
   }
-  removeToken() {
+
+  public removeToken(): void {
     localStorage.removeItem('$esz-token');
   }
-  setLocalObject(key: string, value:any) {
+
+  public setLocalObject(key: string, value:any): void {
     localStorage.setItem(key, this.util.encrypt(JSON.stringify(value)));
   }
-  getLocalObject(key: string):string {
+
+  public getLocalObject(key: string):string {
     let localObj: string = ''; 
     const item: string | null = localStorage.getItem(key);
     if (item) {
