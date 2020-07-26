@@ -77,7 +77,7 @@
                     "lowerUppercaseFormat": "Password should contain lower and uppercase letters"
                 },
                 "name": "password",
-                "type": "password",
+                "type": "text",
                 "validations": {
                     "required": true,
                     "minLength": 8,

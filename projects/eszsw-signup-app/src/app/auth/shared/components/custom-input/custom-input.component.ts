@@ -34,7 +34,8 @@ export class CustomInputComponent implements ControlValueAccessor, Validator, On
     setTimeout(() => this.setValidation(), 0);
   }
 
-  onChange(event: Event) { }
+  onChange(event: Event) { 
+  }
 
   onTouched() { }
 
@@ -56,8 +57,17 @@ export class CustomInputComponent implements ControlValueAccessor, Validator, On
 
   validate(c: AbstractControl): { [key: string]: any; } {
     const validators: ValidatorFn[] = [];
+    if (this.controlValidation.required) {
+      validators.push(Validators.required);
+    }
+    if (this.controlValidation.pattern) {
+      validators.push(Validators.pattern(this.controlValidation.pattern));
+    }
+
     return validators;
   }
+
+  
 
   public setValidation(): void {
     if (this.controlDirective && this.controlDirective.control) {
@@ -140,7 +150,7 @@ export class CustomInputComponent implements ControlValueAccessor, Validator, On
 
   get isThereError(): boolean {
     let showError: boolean = false;
-    if (this.control?.touched && this.control?.invalid) {
+    if (this.control?.touched && this.control?.errors) {
       showError = true;
     }
     return showError;

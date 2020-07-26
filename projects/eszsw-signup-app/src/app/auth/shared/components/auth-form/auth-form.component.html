@@ -2,7 +2,6 @@
 <form *ngIf="formFormat else loading" class="form" [formGroup]="formGroup" (ngSubmit)="onSubmit()">
     <fieldset class="form__fieldset">
         <legend class="sr-only">Login Form</legend>
-
         <ng-container *ngFor="let inputControl of formFormat.inputsControls">
             <eszsw-custom-input   
             [formControlName]="inputControl.name"
