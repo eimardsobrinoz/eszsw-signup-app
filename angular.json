@@ -28,7 +28,7 @@
               "projects/eszsw-signup-app/src/assets"
             ],
             "styles": [
-              "projects/eszsw-signup-app/src/assets/styles/styles.scss"
+              "projects/eszsw-signup-app/src/assets/styles.scss"
             ],
             "stylePreprocessorOptions": {
               "includePaths": [
@@ -97,11 +97,16 @@
               "projects/eszsw-signup-app/src/assets"
             ],
             "styles": [
-              "projects/eszsw-signup-app/src/styles.scss"
+              "projects/eszsw-signup-app/src/assets/styles.scss"
             ],
-            "scripts": [
-              "projects/eszsw-signup-app/src/app"
-            ]
+            "scripts": [],
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                "node_modules/",
+                "projects/eszsw-signup-app/src/assets/styles.scss",
+                "projects/eszsw-signup-app/src/assets/styles"
+              ]
+            }
           }
         },
         "lint": {
