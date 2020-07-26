@@ -18,7 +18,7 @@ export class AuthGuard implements CanActivate {
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     let userAllowed: boolean = false;
-    if ( this.accountService.isUserLogged() ) {
+    if ( this.accountService.isUserLogged()) {
       userAllowed = true;
     } else {
       // I can be displayed any message, dialog, alert component if considered

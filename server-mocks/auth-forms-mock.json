@@ -39,7 +39,7 @@
                 "errorMsg": {
                     "required": "Enter name"
                 },
-                "name": "name",
+                "name": "firstname",
                 "validations": {
                     "required": true
                 }

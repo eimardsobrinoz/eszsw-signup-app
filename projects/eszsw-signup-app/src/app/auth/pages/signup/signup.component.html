@@ -1,2 +1,2 @@
 <h1 class="formTitle formLayout"> Sign Up </h1>
-<eszsw-auth-form #formComponent class="formLayout" [formFormat$]="signUpForm"></eszsw-auth-form>
+<eszsw-auth-form #formComponent class="formLayout" [formFormat$]="signUpForm" (onSubmitForm)="signUp($event)"></eszsw-auth-form>

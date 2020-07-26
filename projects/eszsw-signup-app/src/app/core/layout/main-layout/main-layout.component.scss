@@ -17,7 +17,7 @@
     // background: yellow;
 }
 .contentMain__main {
-    padding: 10px 20px;
+    padding: 15px 20px;
 }
 
 // Tablet resolution
@@ -31,7 +31,7 @@
         }
         .contentMain__main {
             margin:0 auto;
-            padding: 10px 30px;
+            padding: 15px 30px;
         }
         .contentAsideLeft, .contentMain {
             display: inline-block;
@@ -47,6 +47,9 @@
         }
         .contentMain {
             width:70%;
+        }
+        .contentMain__main{
+            padding-top: 0;
         }
         .contentAsideLeft_asideLeft {
             padding: 0;
@@ -64,6 +67,7 @@
         }
     }
 }
+
 
 @media(max-width: $esz-max-iphoneSE-resolution){
     .mainWrapper {

@@ -10,9 +10,10 @@ import { Observable } from 'rxjs';
 export class CompleteFormGuard implements CanDeactivate<SignupComponent> {
   canDeactivate(comp: SignupComponent, currentRoute: ActivatedRouteSnapshot, currentState: RouterStateSnapshot, nextState: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
     const formComponent: AuthFormComponent = comp.formComponent;
-
+    const status: boolean = comp.formComponent.formGroup.pristine || comp.formComponent.formGroup.valid || window.confirm('Form not completed! Are you sure you want to exit?');
     // Instead of window.confirm, It is perfect to build a custom confirm dialog component 
-    return comp.formComponent.formGroup.pristine || window.confirm('Form not completed! Are you sure you want to exit?');
+
+    return status;;
   }
   
 }

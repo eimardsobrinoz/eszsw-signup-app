@@ -97,10 +97,11 @@
               "projects/eszsw-signup-app/src/assets"
             ],
             "styles": [
-              "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
               "projects/eszsw-signup-app/src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [
+              "projects/eszsw-signup-app/src/app"
+            ]
           }
         },
         "lint": {

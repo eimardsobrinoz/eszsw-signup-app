@@ -5,6 +5,7 @@ import { LoadingComponent } from './components/loading/loading/loading.component
 import {MatIconModule} from '@angular/material/icon';
 
 
+
 @NgModule({
   declarations: [LoadingComponent],
   imports: [

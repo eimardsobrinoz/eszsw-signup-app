@@ -3,10 +3,11 @@ import { ErrorFormMessage } from './../../interfaces/error-form-message.interfac
 import { Component, OnInit, Input, Self, ViewChild, ElementRef, ChangeDetectorRef, ChangeDetectionStrategy } from '@angular/core';
 import {
   ControlValueAccessor, Validator, AbstractControl,
-  ValidatorFn, Validators, NgControl, AsyncValidatorFn 
+  ValidatorFn, Validators, NgControl, AsyncValidatorFn
 } from '@angular/forms';
 import { AuthValidation } from '../../interfaces/auth-validation.inteface';
 import { AuthService } from 'projects/eszsw-signup-app/src/app/core/services/auth-service/auth.service';
+import { delay } from 'rxjs/operators';
 
 @Component({
   selector: 'eszsw-custom-input',
@@ -65,7 +66,7 @@ export class CustomInputComponent implements ControlValueAccessor, Validator, On
 
   writeValue(el: any): void {
     if (this.input) {
-      this.input.nativeElement.value = el; 
+      this.input.nativeElement.value = el;
     }
   }
 
@@ -81,13 +82,14 @@ export class CustomInputComponent implements ControlValueAccessor, Validator, On
 
   validate(c: AbstractControl): { [key: string]: any; } {
     const validators: ValidatorFn[] = [];
-    this.setValidation();
     return validators;
   }
 
   setSyncronousValidation(syncValidators: ValidatorFn[]) {
     if (this.controlValidation.required) {
       syncValidators.push(Validators.required);
+    } else {
+      this.control?.clearAsyncValidators();
     }
     if (this.controlValidation.pattern) {
       syncValidators.push(Validators.pattern(this.controlValidation.pattern));
@@ -122,9 +124,12 @@ export class CustomInputComponent implements ControlValueAccessor, Validator, On
   // Asyncronous Validation example
   availableMail(control: AbstractControl): Promise<{ [k: string]: boolean } | null> {
     return new Promise<{ [k: string]: boolean } | null>((resolve, reject) => {
-      // Emulating checking in the data Base if it is available
-      setTimeout(() => {
-        this.authService.isValidEmail(control.value).subscribe(
+      // Emulating checking in the data Base if it is available with delay operator
+      this.authService.isValidEmail(control.value)
+        .pipe(
+          delay(600)
+        )
+        .subscribe(
           status => {
             // test unhappy scenario typing 'email@error.co') or changing the flat status to false in mocks
             if (status && control.value !== 'email@error.co') {
@@ -135,7 +140,6 @@ export class CustomInputComponent implements ControlValueAccessor, Validator, On
           },
           error => reject()
         );
-      }, 3000);
     });
   }
 

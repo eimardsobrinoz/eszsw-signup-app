@@ -25,7 +25,7 @@ export class MailConfirmComponent implements OnInit {
 
   initialize() {
     this.getFormData();
-    this.mailConfirmtxt = 'Please input your email and we will send you a confirmation mail in order to verify your identity';
+    this.mailConfirmtxt = 'Please input your email again and we will send you a confirmation mail in order to verify your identity';
     this.textLink = 'Better to go back?';
     this.linkLbl = 'Sign In!';
     this.linkPath = '';

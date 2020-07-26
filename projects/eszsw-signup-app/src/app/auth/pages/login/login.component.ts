@@ -3,7 +3,7 @@ import { AuthService } from 'projects/eszsw-signup-app/src/app/core/services/aut
 import { AuthForm } from './../../shared/interfaces/auth-form.interface';
 import { Component, OnInit } from '@angular/core';
 import { AuthComponentsTag } from '../../../core/enums/component-tags';
-import { NgForm } from '@angular/forms';
+import { NgForm, FormGroup } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 
@@ -42,7 +42,7 @@ export class LoginComponent implements OnInit {
   }
 
 
-  login(form: NgForm) {
+  login(form: FormGroup) {
     this.router.navigate([RoutePath.MAIL_CONFIRMATION], { relativeTo: this.route });
   }
 

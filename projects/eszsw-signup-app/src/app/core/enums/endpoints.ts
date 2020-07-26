@@ -9,7 +9,7 @@ export enum AuthEndPoints {
     LOGIN = "/auth/token/login/",
     LOGOUT_USER = "/auth/token/logout",
     REFRESH_USER = "/auth/users/me/",
-    SIGNUP = "/auth/users/",
+    SIGNUP = "/users",
     RESET_PASSWORD = "/auth/users/",
     MAIL_CONFIRMATION = "/auth/users/",
     LOGIN_FORM = "/loginForm",

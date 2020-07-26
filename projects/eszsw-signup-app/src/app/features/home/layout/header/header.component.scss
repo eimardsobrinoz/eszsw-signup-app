@@ -1,0 +1,48 @@
+@import 'util/variables.scss';
+
+.header {
+    background: $esz-black;
+    width: 100%;
+    padding:15px 10px;
+    position: relative;
+}
+.header__title {
+    letter-spacing: 3px;
+    font-size: 1rem;
+    margin: 0;
+    display: inline-block;
+    max-width: 66%;
+    overflow: hidden;
+    color:$esz-white;
+}
+.header__btn {
+    vertical-align: middle;
+    border: 2px solid $esz-white;
+    color: $esz-white;
+    padding: 4px 15px;
+    display: inline-block;
+    font-size: 1rem;
+    background: transparent;
+    border-radius: 4px;
+    font-weight: bold;
+    position: absolute;
+    top: 9px;
+    right: 10px;
+}
+
+
+// Resolution large resolution
+@media(min-width: $esz-min-desktop-resolution) {
+    .header {
+        padding:15px 15px;
+        .header__title {
+            letter-spacing: 4px;
+            font-size: 1.5rem;
+        }
+        .header__btn {
+            top:15px;
+            right:15px;
+        }
+    }
+}
+
