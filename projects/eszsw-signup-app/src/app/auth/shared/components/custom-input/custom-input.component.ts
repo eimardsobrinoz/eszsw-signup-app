@@ -1,19 +1,21 @@
 import { AuthFormStatus } from './../../interfaces/auth-validation.inteface';
 import { ErrorFormMessage } from './../../interfaces/error-form-message.interface';
-import { Component, OnInit, Input, Self, ViewChild, ElementRef } from '@angular/core';
-import {ControlValueAccessor, Validator, AbstractControl, ValidatorFn, Validators,
-        NgControl, AsyncValidatorFn
+import { Component, OnInit, Input, Self, ViewChild, ElementRef, OnDestroy } from '@angular/core';
+import {
+  ControlValueAccessor, Validator, AbstractControl, ValidatorFn, Validators,
+  NgControl, AsyncValidatorFn
 } from '@angular/forms';
 import { AuthValidation } from '../../interfaces/auth-validation.inteface';
 import { AuthService } from 'projects/eszsw-signup-app/src/app/core/services/auth-service/auth.service';
 import { delay } from 'rxjs/operators';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'eszsw-custom-input',
   templateUrl: './custom-input.component.html',
   styleUrls: ['./custom-input.component.scss']
 })
-export class CustomInputComponent implements ControlValueAccessor, Validator, OnInit {
+export class CustomInputComponent implements ControlValueAccessor, Validator, OnInit, OnDestroy {
 
   @ViewChild('input') input: ElementRef;
   @Input() type: string = 'text';
@@ -23,6 +25,7 @@ export class CustomInputComponent implements ControlValueAccessor, Validator, On
   @Input() placeholder: string = '';
   @Input() errorMsg: ErrorFormMessage;
 
+  public subscriptions: Subscription[];
   public isDisabled: boolean;
   public control: AbstractControl | null;
 
@@ -31,10 +34,11 @@ export class CustomInputComponent implements ControlValueAccessor, Validator, On
   }
 
   ngOnInit(): void {
+    this.initialize();
     setTimeout(() => this.setValidation(), 0);
   }
 
-  onChange(event: Event) { 
+  onChange(event: Event) {
   }
 
   onTouched() { }
@@ -67,7 +71,9 @@ export class CustomInputComponent implements ControlValueAccessor, Validator, On
     return validators;
   }
 
-  
+  public initialize(): void {
+    this.subscriptions = [];
+  }
 
   public setValidation(): void {
     if (this.controlDirective && this.controlDirective.control) {
@@ -128,11 +134,13 @@ export class CustomInputComponent implements ControlValueAccessor, Validator, On
 
   // Asyncronous Validation example
   public availableMail(control: AbstractControl): Promise<{ [k: string]: boolean } | null> {
+    this.authService.isValidEmail(control.value);
+
     return new Promise<{ [k: string]: boolean } | null>((resolve, reject) => {
       // Emulating checking in the data Base if it is available with delay operator
-      this.authService.isValidEmail(control.value)
+      this.subscriptions.push(this.authService.isValidEmail(control.value)
         .pipe(
-          delay(600)
+          delay(500)
         )
         .subscribe(
           status => {
@@ -144,7 +152,7 @@ export class CustomInputComponent implements ControlValueAccessor, Validator, On
             }
           },
           error => reject()
-        );
+        ));
     });
   }
 
@@ -163,5 +171,10 @@ export class CustomInputComponent implements ControlValueAccessor, Validator, On
     }
     return pending;
   }
+
+  ngOnDestroy(): void {
+    this.subscriptions.forEach(subscription => subscription.unsubscribe());
+  }
+
 
 }

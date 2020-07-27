@@ -14,6 +14,8 @@ export class AsideLeftComponent implements OnInit, AfterViewInit {
   public linkedinPath: string;
   public webSiteLinkTitle:string;
   public linkedinLinkTitle:string;
+  public documentPath:string;
+  public documentTitle:string;
 
   constructor(private renderer2: Renderer2) { }
 
@@ -36,6 +38,8 @@ export class AsideLeftComponent implements OnInit, AfterViewInit {
     this.linkedinPath = "https://www.linkedin.com/in/eimardsobrinozurera/";
     this.webSiteLinkTitle = "Official Eimard's web site";
     this.linkedinLinkTitle = "Eimard's linkedin profile";
+    this.documentPath = "./assets/pdf/SignUp-project_Eimard_DOCUMENTATION.pdf";
+    this.documentTitle = "Project documentation";
   }
 
   public fillFullHeight(): void {

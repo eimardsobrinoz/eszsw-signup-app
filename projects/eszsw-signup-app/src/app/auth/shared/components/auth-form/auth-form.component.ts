@@ -1,4 +1,4 @@
-import { Observable, isObservable } from 'rxjs';
+import { Observable, isObservable, Subscription } from 'rxjs';
 import { AuthForm } from './../../interfaces/auth-form.interface';
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormControl, Validators, AbstractControl, Form } from '@angular/forms';
@@ -14,6 +14,7 @@ export class AuthFormComponent implements OnInit  {
   @Input() formFormat$: AuthForm | Observable<AuthForm>;
   @Output() onSubmitForm:EventEmitter<FormGroup> = new EventEmitter<FormGroup>();
 
+  public subscriptions: Subscription[];
   public formFormat: AuthForm;
   public formGroup: FormGroup;
   public formStatus: AuthFormStatus;
@@ -28,6 +29,7 @@ export class AuthFormComponent implements OnInit  {
   }
 
   public initialize(): void {
+    this.subscriptions = [];
     this.formGroup = new FormGroup({});
     this.formStatus = AuthFormStatus.INVALID;
     this.validForm = false;
@@ -40,12 +42,12 @@ export class AuthFormComponent implements OnInit  {
   }
 
   public obtainFormData(): void {
-    (this.formFormat$ as Observable<AuthForm>).subscribe(
+    this.subscriptions.push((this.formFormat$ as Observable<AuthForm>).subscribe(
       (form: AuthForm) => {
         this.formFormat = form;
         this.buildFormGroup();
       }
-    );  
+    ));  
   }
 
   public buildFormGroup(): void {
@@ -61,14 +63,14 @@ export class AuthFormComponent implements OnInit  {
   public onTouch(): void { }
 
   public onFormChanges():void {
-    this.formGroup.statusChanges.subscribe( status =>{
+    this.subscriptions.push(this.formGroup.statusChanges.subscribe( status =>{
       this.formStatus = status;
       if (this.formStatus == AuthFormStatus.VALID) {
         this.validForm = true;
       } else {
         this.validForm = false;
       }
-    });
+    }));
 
   }
 
@@ -103,6 +105,10 @@ export class AuthFormComponent implements OnInit  {
       } 
       return null;
     }  
+  }
+
+  ngOnDestroy(): void {
+    this.subscriptions.forEach( subscription => subscription.unsubscribe());
   }
 
 }
