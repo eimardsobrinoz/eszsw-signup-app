@@ -1,0 +1,64 @@
+<div class="formInputGroup">
+
+    <!-- LABEL -->
+    <label class="formInputGroup__label" for="userInput">{{label}} 
+        <span *ngIf="controlValidation.required">*</span>
+    </label>
+
+    <div class="formInputGroup__wrapperInput">
+        <!-- INPUT -->
+        <input #input
+        class="formInputGroup__wrapperInput__input" 
+        [disabled]="isDisabled"
+        [ngClass]="{'error' : isThereError, 'email': type ==='email' }"
+        [type]="type"  
+        [placeholder]="placeholder"
+        (input)="onChange($event.target.value)"
+        (blur)="onTouched()"> 
+
+
+         <!-- VALIDATION ERRORS -->
+        <p class="formInputGroup__wrapperInput__text error" *ngIf="control?.touched && control?.errors?.required">
+            {{errorMsg.required}}
+        </p>
+        <p class="formInputGroup__wrapperInput__text error" *ngIf="control?.touched && control?.errors?.minlength">
+            Password should be a minimum of {{control?.errors?.minlength?.requiredLength}} characters
+        </p>
+        <p class="formInputGroup__wrapperInput__text error"
+        *ngIf="control?.touched && control?.errors?.lowerUppercaseFormat && !control?.errors?.required">
+            {{errorMsg.lowerUppercaseFormat}}
+        </p>
+        <p class="formInputGroup__wrapperInput__text error" *ngIf="control?.touched && control?.errors?.pattern">
+            {{errorMsg.format}}
+        </p>
+        <p class="formInputGroup__wrapperInput__text error" *ngIf="control?.touched && control?.errors?.passwordContainsNameOrLastname">
+            Password should not contain user’s first or last name
+        </p>
+
+
+        <ng-container *ngIf="controlValidation.available">
+            <ng-container *ngIf="statusPending">
+                <p class="formInputGroup__wrapperInput__text info">
+                Validating email ...
+                </p>
+                <eszsw-loading class="formInputGroup__wrapperInput__icon loading"></eszsw-loading>
+            </ng-container>
+            
+            <ng-container *ngIf="!control?.errors?.required && control?.dirty && control?.errors?.mailNotAvailable">
+                <p class="formInputGroup__wrapperInput__text error">
+                    {{errorMsg.mailNotAvailable}}
+                </p>
+                <mat-icon class="formInputGroup__wrapperInput__icon error">cancel</mat-icon>
+            </ng-container>
+            
+            <ng-container *ngIf="!control?.errors?.required && control?.dirty && control?.valid">
+                <p class="formInputGroup__wrapperInput__text valid" >
+                    Email available
+                </p>
+                <mat-icon class="formInputGroup__wrapperInput__icon valid">check_circle</mat-icon>
+            </ng-container>   
+        </ng-container>
+
+    </div>
+
+</div>

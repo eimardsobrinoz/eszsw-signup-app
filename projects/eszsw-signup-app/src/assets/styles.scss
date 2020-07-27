@@ -1,0 +1,8 @@
+// Util styles
+@import 'util/variables.scss'; // Important to import it at the beginning, as it contains variables.
+ 
+// Shared Styles
+@import 'shared/common.scss';
+@import 'shared/generic.scss';
+
+

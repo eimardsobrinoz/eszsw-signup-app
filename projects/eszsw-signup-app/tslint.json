@@ -4,13 +4,13 @@
     "directive-selector": [
       true,
       "attribute",
-      "eszSw",
+      "eszsw",
       "camelCase"
     ],
     "component-selector": [
       true,
       "element",
-      "esz-sw",
+      "eszsw",
       "kebab-case"
     ]
   }

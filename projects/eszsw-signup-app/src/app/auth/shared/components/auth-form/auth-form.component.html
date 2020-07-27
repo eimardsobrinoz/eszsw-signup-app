@@ -1,0 +1,30 @@
+
+<form *ngIf="formFormat else loading" class="form" [formGroup]="formGroup" (ngSubmit)="onSubmit()">
+    <fieldset class="form__fieldset">
+        <legend class="sr-only">Login Form</legend>
+        <ng-container *ngFor="let inputControl of formFormat.inputsControls">
+            <eszsw-custom-input   
+            [formControlName]="inputControl.name"
+            [errorMsg]="inputControl.errorMsg"
+            [label]="inputControl.label" 
+            [type]="inputControl?.type"
+            [pattern]=inputControl?.pattern
+            [controlValidation] = "inputControl.validations">
+            </eszsw-custom-input>
+        </ng-container>
+
+        <button type="submit" 
+        class="form__btn" 
+        [ngClass]="{'disabled' : !validForm}"
+        [disabled]="!validForm">
+        {{formFormat.btnLabel}}
+        </button>
+    </fieldset>
+</form>
+
+
+
+<ng-template #loading>
+    <eszsw-loading></eszsw-loading>
+</ng-template>
+

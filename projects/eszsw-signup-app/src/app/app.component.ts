@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'esz-sw-root',
+  selector: 'eszsw-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })

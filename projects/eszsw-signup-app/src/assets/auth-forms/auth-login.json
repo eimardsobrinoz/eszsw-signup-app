@@ -1,0 +1,26 @@
+{
+    "inputsControls": [
+        {
+            "isRequired": true,
+            "label": "Email",
+            "errorMsg": {
+                "emptyLbl": "Email field is required",
+                "formatLbl": "Error in email format"
+            },
+            "name": "Email",
+            "type": "mail",
+            "pattern": "[A-Za-z0-9._%-]+@[A-Za-z0-9._%-]+\\.[a-z]{2,3}"
+        },
+        {
+            "isRequired": true,
+            "label": "Password",
+            "errorMsg": {
+                "emptyLbl": "Enter password",
+                "formatLbl": "Error in password format"
+            },
+            "name": "Password",
+            "type": "password"
+        }
+    ],
+    "btnLabel": "Sign In"
+}
