@@ -137,9 +137,73 @@ npm run analyze
 ```
 Check in browser: http://127.0.0.1:8888/
 
-## Versioning
+## FUNCIONALITIES
 
-First Version
+# SIGN UP
+Head for the signup page clicking on the top right link "Sign up".
+Complete the form and once the form is valid, you will be redirected to home screen. 
+Once there you can go back cloking on logout.
+
+# LOGIN 
+In this screen, you have to complete the form, and once it is valid, clicking on sign In you will be redirected to mail confirmation page.
+
+# NAVIGATION 
+It is posible to navigate to the different pages through the links.
+Normal Flow, clicking on: 
+- Sign in link --> Login scren
+- Sign up link--> Sign up screen
+- Login screen (Sign in button) --> Mail confirmation screen
+- Login screen (forgot password) --> Reset password screen
+- Sign up screen (btn) --> Home screen
+
+# GUARDS
+- Complete Form Guard
+It warns you that are leaving the form page as it has not been completed yet.
+It allows you to go back directly if the form has not been touched.
+
+- Auth Guard
+Prevent users for accessing to the main features if they are not logged
+
+# VALIDATIONS
+- First anme and lastname
+Required validator
+
+- Password
+Required,
+Min lenth 8,
+It should contains uppercase and lowercase,
+it should not contains either firstname or lastname
+
+
+- Email
+Required validator, 
+PAttern validator,
+Asyncronous validation to check if the email is already registered
+
+# HANDLE ERROR
+When executing http call, when receiving 401 error code (Unauthorized) the user will be logged out automatically, thanks for error handler in httpinterceptor.
+
+# DYNAMIC REUSABLE REACTIVE FORMS
+Formgroup built dynamically and with custom controls. Explained in documentation.
+
+# ASIDE LEFT LINKS
+- Web site: Click to visit my personal web page in new tab
+
+```
+https://eimardsobrinozurera.com/#/home
+```
+
+- Linkedin: Click to visit my linkedin profile web page in new tab
+
+```
+linkedin.com/in/eimardsobrinozurera
+```
+
+- Documentation: Click to visit the documentation of the project
+
+```
+https://gitlab.com/esobrinoz/eszsw-signup-app/-/blob/master/projects/eszsw-signup-app/src/assets/pdf/SignUp-project_Eimard_DOCUMENTATION.pdf
+```
 
 ## Authors
 
